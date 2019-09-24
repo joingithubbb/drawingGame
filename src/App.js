@@ -1,91 +1,56 @@
-import React, { useEffect, useState } from "react";
-import { getPrediction } from "./helpers.js";
+import React from "react";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
-function Controls({ theCanvas, model, labels }) {
-  let [prediction, setPrediction] = useState(""); // Sets default label to empty string.
+function App() {
+  return <AppRouter />;
+}
 
-  useEffect(() => {
-    console.log(prediction);
-  });
+function Home() {
+  return <h2>Home</h2>;
+}
+
+function About() {
+  return <h2>Game</h2>;
+}
+
+function End() {
+  
+  function routeToHome(){
+
+    window.location.replace('./');
+  };
 
   return (
-    <div>
-      <button
-        onClick={() => {
-          const canvas = theCanvas.current;
-          const ctx = canvas.getContext("2d");
-          ctx.fillRect(0, 0, canvas.height, canvas.width);
-        }}
-      >
-        Clear the canvas.
-      </button>
-      <button
-        onClick={() =>
-          getPrediction(theCanvas, model).then(prediction =>
-            setPrediction(labels[prediction[0]])
-          )
-        }
-      >
-        Predict the drawing.
-      </button>
-    </div>
+    <h2>End</h2>,
+    <button type="submit" onClick={routeToHome}>Home</button>
   );
 }
 
-const Canvas = React.forwardRef((props, ref) => {
-  let mouseDown = false;
-  let lastX;
-  let lastY;
-
-  function drawLine(canvas, x, y, lastX, lastY) {
-    let context = canvas.getContext("2d");
-
-    context.strokeStyle = "#111111";
-    context.lineWidth = 10;
-    context.lineJoin = "round";
-
-    context.beginPath();
-    context.moveTo(lastX, lastY);
-    context.lineTo(x, y);
-    context.closePath();
-    context.stroke();
-
-    return [x, y];
-  }
-
-  const handleMouseup = () => {
-    mouseDown = false;
-    [lastX, lastY] = [undefined, undefined];
-  };
-
-  const handleMousemove = e => {
-    const rect = e.target.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-
-    if (mouseDown) {
-      [lastX, lastY] = drawLine(e.target, x, y, lastX, lastY);
-    }
-  };
-
-  useEffect(() => {
-    const canvas = ref.current;
-    const context = canvas.getContext("2d");
-
-    context.fillStyle = "#ffffff";
-    context.fillRect(0, 0, canvas.height, canvas.width);
-  });
-
+function AppRouter() {
   return (
-    <canvas
-      height={300}
-      width={300}
-      ref={ref}
-      onMouseDown={() => (mouseDown = true)}
-      onMouseUp={handleMouseup}
-      onMouseMove={e => handleMousemove(e)}
-    />
-  );
-});
+    <Router>
+      <div>
+{/*         <nav>
+          <ul>
+            <li>
+              <Link to="/">Home</Link>
+            </li>
+            <li>
+              <Link to="/game/">Game</Link>
+            </li>
+            <li>
+              <Link to="/end">End</Link>
+            </li>
+          </ul>
+        </nav> */}
 
-export { Canvas, Controls };
+        <Route path="/" exact component={Home} />
+        <Route path="/game" component={About} />
+        <Route path="/end" component={End} />
+      </div>
+    </Router>
+  );
+}
+
+export default AppRouter;
+export { App };

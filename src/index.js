@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
-import { Canvas, Controls } from "./App";
+import AppRouter, { App } from "./App";
 import * as serviceWorker from "./serviceWorker";
 import * as tf from "@tensorflow/tfjs";
 
@@ -11,8 +11,9 @@ let ref = React.createRef();
 
 ReactDOM.render(
   <div>
-    <Canvas ref={ref} />
-    <Controls theCanvas={ref} model={model} labels={labels} />
+    <App />
+{/*     <Canvas ref={ref} />
+    <Controls theCanvas={ref} model={model} labels={labels} /> */}
   </div>,
   document.getElementById("root")
 );
