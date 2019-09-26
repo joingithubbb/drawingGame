@@ -1,28 +1,36 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import GameEngine from "./GameEngine";
 
 function App() {
-  return <AppRouter />;
+  return (
+  <div>
+    <AppRouter />
+    <GameEngine />
+  </div>
+  );
 }
 
-function Home() {
+function HomeRouter() {
   return <h2>Home</h2>;
 }
 
-function About() {
+function GameRouter() {
   return <h2>Game</h2>;
 }
 
-function End() {
+function EndRouter() {
   
-  function routeToHome(){
+  function routeToHome() {
 
     window.location.replace('./');
   };
 
   return (
-    <h2>End</h2>,
-    <button type="submit" onClick={routeToHome}>Home</button>
+    <div>
+      <h2>End</h2>
+      <button type="submit" onClick={routeToHome}>Home</button>
+    </div>
   );
 }
 
@@ -30,23 +38,9 @@ function AppRouter() {
   return (
     <Router>
       <div>
-{/*         <nav>
-          <ul>
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/game/">Game</Link>
-            </li>
-            <li>
-              <Link to="/end">End</Link>
-            </li>
-          </ul>
-        </nav> */}
-
-        <Route path="/" exact component={Home} />
-        <Route path="/game" component={About} />
-        <Route path="/end" component={End} />
+        <Route path="/" exact component={HomeRouter} />
+        <Route path="/game" component={GameRouter} />
+        <Route path="/end" component={EndRouter} />
       </div>
     </Router>
   );

@@ -1,5 +1,22 @@
 import React, { useEffect, useState } from "react";
 import { getPrediction } from "./helpers.js";
+import * as tf from "@tensorflow/tfjs";
+
+
+const model = tf.loadModel("../public/model/model.json");
+const labels = require("./labels.json");
+let ref = React.createRef();
+
+
+function Game() {
+
+    return (
+        <div>
+            <Canvas ref={ref} />
+            <Controls theCanvas={ref} model={model} labels={labels} />
+        </div>
+    );
+}
 
 function Controls({ theCanvas, model, labels }) {
     let [prediction, setPrediction] = useState(""); // Sets default label to empty string.
@@ -88,4 +105,4 @@ const Canvas = React.forwardRef((props, ref) => {
     );
   });
 
-  export { Canvas, Controls };
+  export default Game;

@@ -1,20 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
-import AppRouter, { App } from "./App";
+import App from "./App";
 import * as serviceWorker from "./serviceWorker";
-import * as tf from "@tensorflow/tfjs";
 
-const model = tf.loadModel("./model/model.json");
-const labels = require("./labels.json");
-let ref = React.createRef();
 
 ReactDOM.render(
-  <div>
-    <App />
-{/*     <Canvas ref={ref} />
-    <Controls theCanvas={ref} model={model} labels={labels} /> */}
-  </div>,
+  <App />,
   document.getElementById("root")
 );
 
@@ -22,3 +14,7 @@ ReactDOM.render(
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: http://bit.ly/CRA-PWA
 serviceWorker.unregister();
+
+
+/*     <Canvas ref={ref} />
+    <Controls theCanvas={ref} model={model} labels={labels} /> */
