@@ -1,5 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
+import { Switch } from "react-router";
 import { GameEngine } from "./GameEngine";
 
 
@@ -35,13 +36,21 @@ function EndRouter() {
   );
 }
 
+function NoMatch() {
+
+  return <h1>Nothing to see here - Four Oh! Four</h1>
+}
+
 function AppRouter() {
   return (
     <Router>
       <div>
-        <Route path="/" exact component={HomeRouter} />
-        <Route path="/game" component={GameRouter} />
-        <Route path="/end" component={EndRouter} />
+        <Switch>
+          <Route path="/" exact component={HomeRouter} />
+          <Route path="/game" component={GameRouter} />
+          <Route path="/end" component={EndRouter} />
+          <Route component={NoMatch} />
+        </Switch>
       </div>
     </Router>
   );
