@@ -1,9 +1,11 @@
 import React from "react";
-import Game from "./Game.js";
+import { Game } from "./Game";
 
 function GameEngine() {
 
-    return <Game />;
+    return(
+        <Game />
+    )
 }
 
-export default GameEngine;
+export { GameEngine };
