@@ -15,6 +15,7 @@ function Game(){
 
     return(
     <div>
+        <h2>Game</h2>
         <Canvas ref={ref} />
         <Controls theCanvas={ref} model={model} labels={labels} />
     </div>
