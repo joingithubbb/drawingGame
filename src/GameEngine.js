@@ -7,35 +7,6 @@ import { End } from "./End";
 
 function GameEngine() {
 
-//For showing correct route
-const[route, setRoute] = useState("Home");
-const[lastRoute, setlastRoute] = useState("Home");
-
-//For showing correct route
-useEffect(() => {
-  if(lastRoute !== route){
-    switch (route) {      
-      case "Home":
-        setlastRoute(route);
-        window.location.replace('./');
-        break;
-
-      case "Game":
-        setlastRoute(route);
-        window.location.replace('./game');
-        break;
-
-      case "End":
-        setlastRoute(route);
-        window.location.replace('./end');
-        break;
-
-      default:
-        NoMatch();
-    }
-  }
-});
-
     return(
         <AppRouter />
     )
