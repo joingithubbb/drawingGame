@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { RouteToHome } from "./GameEngine";
+import { RouteToHome, RouteToGame } from "./GameEngine";
 import { PointsContext } from "./GameEngine";
 
     function Win () {
@@ -34,6 +34,7 @@ import { PointsContext } from "./GameEngine";
                 <div>
                     <Win />
                     <button type="submit" onClick={RouteToHome}>Home</button>
+                    <button type="submit" onClick={RouteToGame}>Play again</button>
                 </div>
             );
         }
@@ -42,6 +43,7 @@ import { PointsContext } from "./GameEngine";
                 <div>
                     <Lose />
                     <button type="submit" onClick={RouteToHome}>Home</button>
+                    <button type="submit" onClick={RouteToGame}>Play again</button>
                 </div>
             );
         }
