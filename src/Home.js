@@ -16,9 +16,9 @@ import { RouteToGame } from "./GameEngine";
 
     return (
         <div>
-            <p1>Welcome to Sketch the Drawing Game!</p1>
+            <h2>Welcome to Sketch the Drawing Game!</h2>
             <br></br>
-            <p2>This is a game inspired by Google's "Quick, Draw!" - You'll have to draw quickly!</p2>
+            <h3>This is a game inspired by Google's "Quick, Draw!" - You'll have to draw quickly!</h3>
         </div>
     )
  }

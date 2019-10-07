@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import { Switch } from "react-router";
 import { Game } from "./Game";
@@ -60,7 +60,7 @@ function EndRouter() {
 
 function NoMatch() {
 
-  return <h1>Nothing to see here - Four Oh! Four</h1>
+  return <h1>Nothing to see here - Four Oh! Four</h1>;
 }
 
 function AppRouter() {

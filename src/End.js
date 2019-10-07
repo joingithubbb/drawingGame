@@ -5,15 +5,15 @@ import { PointsContext } from "./GameEngine";
     function Win () {
 
         return (
-            <p1>Yes you won!</p1> 
-        )
+            <h3>Yes you won!</h3> 
+        );
     }
 
     function Lose () {
 
         return (
-            <p1>Oh no, you lost!</p1>
-        )
+            <h3>Oh no, you lost!</h3>
+        );
     }
 
 
@@ -29,7 +29,7 @@ import { PointsContext } from "./GameEngine";
                     <Win />
                     <button type="submit" onClick={RouteToHome}>Home</button>
                 </div>
-            )
+            );
         }
         else {
             return(
@@ -37,7 +37,7 @@ import { PointsContext } from "./GameEngine";
                     <Lose />
                     <button type="submit" onClick={RouteToHome}>Home</button>
                 </div>
-            )
+            );
         }
     }
 
