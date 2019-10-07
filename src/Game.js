@@ -1,5 +1,6 @@
 import { Canvas } from "./Canvas";
 import { Controls } from "./Controls";
+import { Prediction } from "./Prediction";
 
 import React from "react";
 import "./index.css";
@@ -17,7 +18,8 @@ function Game(){
     <div>
         <h2>Game</h2>
         <Canvas ref={ref} />
-        <Controls theCanvas={ref} model={model} labels={labels} />
+        <Controls theCanvas={ref} />
+        <Prediction theCanvas={ref} model={model} labels={labels} />
     </div>
         )
 };

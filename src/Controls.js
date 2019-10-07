@@ -1,12 +1,6 @@
-import React, { useEffect, useState } from "react";
-import { getPrediction } from "./helpers.js";
+import React from "react";
 
 function Controls({ theCanvas, model, labels }) {
-  let [prediction, setPrediction] = useState(""); // Sets default label to empty string.
-
-  useEffect(() => {
-    console.log(prediction);
-  });
 
   return (
     <div>
@@ -18,15 +12,6 @@ function Controls({ theCanvas, model, labels }) {
         }}
       >
         Clear the canvas.
-      </button>
-      <button
-        onClick={() =>
-          getPrediction(theCanvas, model).then(prediction =>
-            setPrediction(labels[prediction[0]])
-          )
-        }
-      >
-        Predict the drawing.
       </button>
     </div>
   );
