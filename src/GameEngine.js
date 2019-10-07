@@ -1,15 +1,21 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import { Switch } from "react-router";
 import { Game } from "./Game";
 import { Home } from "./Home";
 import { End } from "./End";
 
+const PointsContext = React.createContext(0);
+
 function GameEngine() {
 
-    return(
-        <AppRouter />
-    )
+  const points = 5;
+
+  return(
+    <PointsProvider value={points}>
+      <AppRouter />
+    </PointsProvider>
+  );
 }
 
 //-----Router-Stuff---------
@@ -37,7 +43,7 @@ function GameRouter() {
     <div>
       <Game />
     </div>
-  )
+  );
 }
 
 function EndRouter() {
@@ -48,9 +54,7 @@ function EndRouter() {
   // };
 
   return (
-    <div>
       <End />
-    </div>
   );
 }
 
@@ -75,3 +79,6 @@ function AppRouter() {
 }
 
 export { GameEngine, RouteToHome, RouteToGame, RouteToEnd };
+export const PointsProvider = PointsContext.Provider;
+export const PointsConsumer = PointsContext.Consumer;
+export { PointsContext };
