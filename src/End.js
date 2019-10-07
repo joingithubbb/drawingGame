@@ -3,16 +3,24 @@ import { RouteToHome } from "./GameEngine";
 import { PointsContext } from "./GameEngine";
 
     function Win () {
+        const points = useContext(PointsContext);
 
         return (
-            <h3>Yes you won!</h3> 
+            <div>
+                <h2>Yes you won!</h2> 
+                <h3>Score: {points}</h3>
+            </div>
         );
     }
 
     function Lose () {
+        const points = useContext(PointsContext);
 
         return (
-            <h3>Oh no, you lost!</h3>
+            <div>
+                <h2>Oh no, you lost!</h2>
+                <h3>Score: {points}</h3>
+            </div>
         );
     }
 
@@ -20,8 +28,6 @@ import { PointsContext } from "./GameEngine";
     function End() {
 
         const points = useContext(PointsContext);
-
-        console.log(points);
 
         if(points >= 5){
             return(
