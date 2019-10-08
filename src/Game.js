@@ -16,7 +16,8 @@ function Game(){
 
     return(
     <div>
-        <h2>Game</h2>
+        <h3>You'll have to draw the requested thing!</h3>
+        <h4>For each correct answer you'll get a point. Five points to win! But beware of the countdown!</h4>
         <Canvas ref={ref} />
         <Controls theCanvas={ref} />
         <Prediction theCanvas={ref} model={model} labels={labels} />
