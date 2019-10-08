@@ -30,15 +30,6 @@ function Prediction({ theCanvas, model, labels }) {
 
   return (
     <div>
-      <button
-        onClick={() =>
-          getPrediction(theCanvas, model).then(prediction =>
-            setPrediction(labels[prediction[0]])
-          )
-        }
-      >
-        Predict the drawing.
-      </button>
     </div>
   );
 }
