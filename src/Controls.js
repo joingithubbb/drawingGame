@@ -1,4 +1,5 @@
 import React from "react";
+import { RouteToHome } from "./GameEngine";
 
 function Controls({ theCanvas, model, labels }) {
 
@@ -13,6 +14,7 @@ function Controls({ theCanvas, model, labels }) {
       >
         Clear the canvas.
       </button>
+      <button type="submit" onClick={RouteToHome}>Home</button>
     </div>
   );
 }
