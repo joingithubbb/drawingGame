@@ -3,19 +3,11 @@ import { Canvas } from "./Canvas";
 import { Controls } from "./Controls";
 import { Prediction } from "./Prediction";
 import { RouteToGame } from "./GameEngine"
+import { Countdown } from "./Countdown";
 
 import React from "react";
 import "./index.css";
 import * as tf from "@tensorflow/tfjs";
-
-function Countdown() {
-    console.log("Hello from Countdown");
-    return (
-        <div>
-            <h1>TESTESTEST</h1>
-        </div>
-    );
-}
 
 function Game() {
     const [gameOn, setGameOn] = useState(false);
@@ -44,8 +36,7 @@ function Game() {
     return (
         <div>
             { console.log("Hello from gameOn") }
-            <h3>You'll have to draw the requested thing!</h3>
-            <h4>For each correct answer you'll get a point. Five points to win! But beware of the countdown!</h4>
+            <Countdown />
             <button type="submit" onClick={RouteToGame}>Reset Game</button>
             <div>
                 <Canvas ref={ref} />
