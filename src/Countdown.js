@@ -13,15 +13,6 @@ function Countdown(props) {
     return () => clearInterval(interval);
   }, []);
 
-/*   (function startCountdown() {
-    setInterval(
-      function countd() {
-        setCountdownNumber(countdownNumber -= 1);
-      }
-      , 1000
-    );
-  })(); */
-
   return (
 
     <div asdf={props.handler(countdownNumber)}>

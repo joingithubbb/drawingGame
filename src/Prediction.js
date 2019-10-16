@@ -6,25 +6,15 @@ function Prediction({ theCanvas, model, labels }) {
 
   //Predict every second
   useEffect(() => {
-    console.log(prediction);
+    const interval = setInterval(() => {
+      console.log(prediction);
+      getPrediction(theCanvas, model).then(prediction =>
+        setPrediction(labels[prediction[0]]))
+    }, 1000);
+    return () => clearInterval(interval);
+  });
 
-    const intervalId = setInterval(
-      function pred() {
-        getPrediction(theCanvas, model).then(prediction =>
-          setPrediction(labels[prediction[0]])
-        )
-      }
-      , 500
-    );
 
-    clearInterval(intervalId);
-  }, []);
-
-/*   var intervalId;
-
-  function predict() {
-
-  } */
 
 
 
