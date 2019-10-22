@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useReducer } from "react";
 import { Canvas } from "./Canvas";
 import { Controls } from "./Controls";
 import { Prediction } from "./Prediction";
@@ -18,11 +18,36 @@ function Game() {
     const labels = require("./labels.json");
     let ref = React.createRef();
 
-    const [theCountdownNumber, setTheCountdownNumber] = useState(1);
+    const [theCountdownNumber, setTheCountdownNumber] = useReducer(1);
     const [theNewCountdownNumber, setTheNewCountdownNumber] = useState(0);
+    const [round, setRound] = useState(1);
+    const [determineRoundStopper, setDetermineRoundStopper] = useState(false);
+    const [resetCountdown, setResetCountdown] = useState(false);
+
+    function determineRound(countdownNumber) {
+        if (resetCountdown === true && countdownNumber === 0) {
+            setRound(round + 1);
+            setDetermineRoundStopper(true);
+            //resetTheCountdown();
+            console.log("coundownNumber: " + countdownNumber + " resetCountdown: " + resetCountdown);
+            setResetCountdown(false);
+            console.log("resetCountdown: " + resetCountdown);
+        }
+        
+        // else if() {
+        //     Hier kommt Logik für nach X Runden weiterleiten an End
+        // }
+    }
+
+    function resetTheCountdown(bool) {
+        setResetCountdown(bool);
+        console.log("resetTheCountdown: " + resetCountdown);
+    }
 
     function updateCountdownNumber(countdownNumber) {
-
+        console.log("current timer = " + countdownNumber);
+        determineRound(countdownNumber);
+/*
         if (theCountdownNumber !== theNewCountdownNumber) {
             setTheCountdownNumber(countdownNumber);
             setTheNewCountdownNumber(countdownNumber);
@@ -30,7 +55,7 @@ function Game() {
         }
         else {
             console.log("Nömbers not updated");
-        }
+        }*/
     }
 
 
@@ -55,13 +80,13 @@ function Game() {
         return (
             <div>
                 {console.log("Hello from gameOn")}
-                <Countdown handler={updateCountdownNumber} />
-                <Round countdownNumber={theCountdownNumber} />
+                <Countdown updateCountdNumber={updateCountdownNumber} resetCountdown={setResetCountdown} />
+                <Round countdownNumber={round} />
                 <button type="submit" onClick={RouteToGame}>Reset Game</button>
                 <div>
                     <Canvas ref={ref} />
                     <Controls theCanvas={ref} />
-                    <Prediction theCanvas={ref} model={model} labels={labels} />
+                    {/* <Prediction theCanvas={ref} model={model} labels={labels} /> */}
                 </div>
             </div>
         )
