@@ -18,8 +18,6 @@ function Game() {
     const labels = require("./labels.json");
     let ref = React.createRef();
 
-    const [theCountdownNumber, setTheCountdownNumber] = useReducer(1);
-    const [theNewCountdownNumber, setTheNewCountdownNumber] = useState(0);
     const [round, setRound] = useState(1);
     const [determineRoundStopper, setDetermineRoundStopper] = useState(false);
     const [resetCountdown, setResetCountdown] = useState(false);
@@ -28,14 +26,13 @@ function Game() {
         if (resetCountdown === true && countdownNumber === 0) {
             setRound(round + 1);
             setDetermineRoundStopper(true);
-            //resetTheCountdown();
-            console.log("coundownNumber: " + countdownNumber + " resetCountdown: " + resetCountdown);
+            console.log("countdownNumber: " + countdownNumber + " resetCountdown: " + resetCountdown);
             setResetCountdown(false);
             console.log("resetCountdown: " + resetCountdown);
         }
         
-        // else if() {
-        //     Hier kommt Logik für nach X Runden weiterleiten an End
+        // else if(round === 6) {
+        //     window.location.replace('./end');
         // }
     }
 
@@ -47,15 +44,6 @@ function Game() {
     function updateCountdownNumber(countdownNumber) {
         console.log("current timer = " + countdownNumber);
         determineRound(countdownNumber);
-/*
-        if (theCountdownNumber !== theNewCountdownNumber) {
-            setTheCountdownNumber(countdownNumber);
-            setTheNewCountdownNumber(countdownNumber);
-            console.log("Nömbers updated");
-        }
-        else {
-            console.log("Nömbers not updated");
-        }*/
     }
 
 
