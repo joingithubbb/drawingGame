@@ -9,6 +9,7 @@ import { Round } from "./Round";
 import React from "react";
 import "./index.css";
 import * as tf from "@tensorflow/tfjs";
+import * as gameSettings from "./gameSettings.json";
 
 function Game() {
 
@@ -23,17 +24,21 @@ function Game() {
     const [resetCountdown, setResetCountdown] = useState(false);
 
     function determineRound(countdownNumber) {
+
+        var jumpToEnd = 0;
         if (resetCountdown === true && countdownNumber === 0) {
             setRound(round + 1);
             setDetermineRoundStopper(true);
             console.log("countdownNumber: " + countdownNumber + " resetCountdown: " + resetCountdown);
             setResetCountdown(false);
             console.log("resetCountdown: " + resetCountdown);
+            jumpToEnd += 1;
+
+            //Small workaround for jumping to /end after finishing last round
+            if (round === gameSettings.maxRounds && jumpToEnd === 1) {
+                window.location.replace('./end');
+            }
         }
-        
-        // else if(round === 6) {
-        //     window.location.replace('./end');
-        // }
     }
 
     function resetTheCountdown(bool) {
