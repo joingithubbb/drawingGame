@@ -24,18 +24,19 @@ function Game() {
     const [resetCountdown, setResetCountdown] = useState(false);
 
     function determineRound(countdownNumber) {
-
         var jumpToEnd = 0;
+
         if (resetCountdown === true && countdownNumber === 0) {
+            console.log("Round: " + round);
             setRound(round + 1);
+            console.log("Round: " + round);
             setDetermineRoundStopper(true);
-            console.log("countdownNumber: " + countdownNumber + " resetCountdown: " + resetCountdown);
             setResetCountdown(false);
-            console.log("resetCountdown: " + resetCountdown);
             jumpToEnd += 1;
 
             //Small workaround for jumping to /end after finishing last round
             if (round === gameSettings.maxRounds && jumpToEnd === 1) {
+                jumpToEnd = 0;
                 window.location.replace('./end');
             }
         }
@@ -43,11 +44,9 @@ function Game() {
 
     function resetTheCountdown(bool) {
         setResetCountdown(bool);
-        console.log("resetTheCountdown: " + resetCountdown);
     }
 
     function updateCountdownNumber(countdownNumber) {
-        console.log("current timer = " + countdownNumber);
         determineRound(countdownNumber);
     }
 
@@ -57,7 +56,6 @@ function Game() {
     if (!gameOn) {
         return (
             <div>
-                {console.log("Hello from !gameOn")}
                 <h3>You'll have to draw the requested thing!</h3>
                 <h4>For each correct answer you'll get a point. Five points to win! But beware of the countdown!</h4>
                 <button type="submit" onClick={() => setGameOn(true)}>Start Game</button>
@@ -72,14 +70,13 @@ function Game() {
     else {
         return (
             <div>
-                {console.log("Hello from gameOn")}
                 <Countdown updateCountdNumber={updateCountdownNumber} resetCountdown={setResetCountdown} />
                 <Round countdownNumber={round} />
                 <button type="submit" onClick={RouteToGame}>Reset Game</button>
                 <div>
                     <Canvas ref={ref} />
                     <Controls theCanvas={ref} />
-                    {/* <Prediction theCanvas={ref} model={model} labels={labels} /> */}
+                    <Prediction theCanvas={ref} model={model} labels={labels} />
                 </div>
             </div>
         )

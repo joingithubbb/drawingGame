@@ -12,7 +12,7 @@ function Prediction({ theCanvas, model, labels }) {
         setPrediction(labels[prediction[0]]))
     }, 1000);
     return () => clearInterval(interval);
-  });
+  }, [prediction, theCanvas, model, labels]);
 
 
 

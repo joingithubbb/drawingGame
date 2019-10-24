@@ -34,7 +34,6 @@ function RouteToEnd() {
 
 
 function HomeRouter() {
-//  console.log("This is HomeRouter");
   return <Home />;
 }
 
