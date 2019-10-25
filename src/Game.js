@@ -26,42 +26,12 @@ function Game() {
 
     const [gameOn, setGameOn] = useState(false);
     var currentLabel;
-    switch (round) {
-        case 1:
-            currentLabel = labels[0];
-            break;
-        case 2:
-            currentLabel = labels[1];
-            break;
-        case 3:
-            currentLabel = labels[2];
-            break;
-        case 4:
-            currentLabel = labels[3];
-            break;
-        case 5:
-            currentLabel = labels[4];
-            break;
-        case 6:
-            currentLabel = labels[5];
-            break;
-        case 7:
-            currentLabel = labels[6];
-            break;
-        case 8:
-            currentLabel = labels[7];
-            break;
-        case 9:
-            currentLabel = labels[8];
-            break;
-        case 10:
-            currentLabel = labels[9];
-            break;
-        case 11:
-            currentLabel = "loading";
-            break;
-        default:
-            currentLabel = "Something went wrong";
+
+    if (round < 11) {
+        currentLabel = labels[round - 1]
+    }
+    else {
+        currentLabel = "loading";
     }
 
     function incrementLabel() {
