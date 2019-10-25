@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { RouteToHome, RouteToGame } from "./GameEngine";
 import { PointsContext } from "./GameEngine";
+import * as gameSettings from "./gameSettings.json";
 
     function Win () {
         const points = useContext(PointsContext);
@@ -29,7 +30,7 @@ import { PointsContext } from "./GameEngine";
 
         const points = useContext(PointsContext);
 
-        if(points >= 5){
+        if(points >= gameSettings.pointsToWin){
             return(
                 <div>
                     <Win />

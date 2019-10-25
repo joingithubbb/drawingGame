@@ -16,7 +16,7 @@ function Countdown(props) {
       else
       {
         setCountdownNumber(countdownNumber -= 1);
-        console.log(countdownNumber);
+        //console.log(countdownNumber);
       }
     }, 1000);
     return () => clearInterval(interval);

@@ -1,4 +1,5 @@
 {
-    "roundTime" : 5,
-    "maxRounds" : 5
+    "roundTime" : 0,
+    "maxRounds" : 10,
+    "pointsToWin" : 5
 }
