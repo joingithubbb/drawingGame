@@ -23,9 +23,17 @@ function Game() {
     const [round, setRound] = useState(1);
     const [determineRoundStopper, setDetermineRoundStopper] = useState(false);
     const [resetCountdown, setResetCountdown] = useState(false);
+    const [getsPoint, setGetsPoint] = useState(false);
 
     const [gameOn, setGameOn] = useState(false);
     var currentLabel;
+
+    // if(typeof getsPoint === 'undefined'){
+    // var getsPoint = true;
+    // }
+
+    // console.log("%c BANANA", "color: #ff0000");
+    // console.log("getsPoint (Banana): " + getsPoint);
 
     if (round < 11) {
         currentLabel = labels[round - 1]
@@ -38,17 +46,28 @@ function Game() {
         currentLabel = labels[round - 1];
     }
 
+    function pointEvaluation(pointYesOrNo) {
+        if (pointYesOrNo === true) {
+            setRound(round + 1);
+            resetTheCountdown(false);
+            setGetsPoint(pointYesOrNo);
+        }
+        // console.log("getsPoint: " + getsPoint);
+    }
+
+    function resetGetsPoint() {
+        setGetsPoint(false);
+    }
+
     function determineRound(countdownNumber) {
         var jumpToEnd = 0;
-        console.log("Current label: " + currentLabel);
-        incrementLabel();
-        console.log("Current label: " + currentLabel);
+
         if (resetCountdown === true && countdownNumber === 0) {
-            //console.log("Round: " + round);
+            incrementLabel();
             setRound(round + 1);
-            //console.log("Round: " + round);
             setDetermineRoundStopper(true);
             setResetCountdown(false);
+            resetGetsPoint();
             jumpToEnd += 1;
 
             //Small workaround for jumping to /end after finishing last round
@@ -67,14 +86,11 @@ function Game() {
         determineRound(countdownNumber);
     }
 
-
-
-
     if (!gameOn) {
         return (
             <div>
                 <h3>You'll have to draw the requested thing!</h3>
-                <h4>For each correct answer you'll get a point. {gameSettings.pointsToWin} points to win! But beware of the countdown!</h4>
+                <h4>For each correct answer you'll get a point. {gameSettings.maxRounds} rounds it will take! {gameSettings.pointsToWin} points to win! But beware of the countdown!</h4>
                 <button type="submit" onClick={() => setGameOn(true)}>Start Game</button>
                 <div>
                     <Canvas ref={ref} />
@@ -87,14 +103,14 @@ function Game() {
     else {
         return (
             <div>
-                <GameInfoText currentLabel={currentLabel} />
-                <Countdown updateCountdNumber={updateCountdownNumber} resetCountdown={setResetCountdown} />
+                <GameInfoText currentLabel={currentLabel} getsPoint={getsPoint} />
+                <Countdown updateCountdNumber={updateCountdownNumber} resetCountdown={setResetCountdown} getsPoint={getsPoint} />
                 <Round countdownNumber={round} />
                 <button type="submit" onClick={RouteToGame}>Reset Game</button>
                 <div>
                     <Canvas ref={ref} />
                     <Controls theCanvas={ref} />
-                    <Prediction theCanvas={ref} model={model} labels={labels} />
+                    <Prediction theCanvas={ref} model={model} labels={labels} pointEvaluation={pointEvaluation} currentLabel={currentLabel} round={round} />
                 </div>
             </div>
         )

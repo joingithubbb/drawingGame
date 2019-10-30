@@ -8,9 +8,32 @@ function GameInfoText(props) {
         );
     }
 
-    else {
+    else if (props.getsPoint === false) {
         return (
-            <h1>Draw a {props.currentLabel}!</h1>
+            <div>
+                <h1>{props.getsPoint}</h1>
+                <h1>Oh man you can do better!</h1>
+                <h1>Draw a {props.currentLabel}!</h1>
+            </div >
+        );
+    }
+
+    else if (props.getsPoint === true) {
+        return (
+            <div>
+                <h1>Nice job!</h1>
+                <h1>Draw a {props.currentLabel}!</h1>
+            </div>
+        );
+    }
+
+    else {
+        // console.log("getsPoint: " + props.getsPoint);
+        return (
+            <div>
+                {/* <h1>{props.getsPoint}</h1> */}
+                <h1>Draw a {props.currentLabel}!</h1>
+            </div>
         );
     }
 }
