@@ -9,13 +9,19 @@ function Countdown(props) {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      if(countdownNumber === 0) {
+      if (countdownNumber === 0) {
         props.resetCountdown(true);
         setCountdownNumber(gameSettings.roundTime);
+        //Muss noch auf false setzen
+        props.pointEvaluation(true);
       }
-      else
-      {
-        setCountdownNumber(countdownNumber -= 1);
+      else {
+        if (props.resetCountdown === true) {
+          setCountdownNumber(gameSettings.roundTime);
+        }
+        else {
+          setCountdownNumber(countdownNumber -= 1);
+        }
         //console.log(countdownNumber);
       }
     }, 1000);
@@ -23,7 +29,7 @@ function Countdown(props) {
   }, [countdownNumber]);
 
   return (
-
+    //Vorschlag: Das wegnehmen und in useEffect tun probieren und lugen was passiert
     <div callback={props.updateCountdNumber(countdownNumber)}>
       Countdown: {countdownNumber}
     </div >

@@ -46,11 +46,16 @@ function Game() {
         currentLabel = labels[round - 1];
     }
 
+    function transferPointYesOrNo(pointYesOrNo) {
+        return pointYesOrNo;
+    }
+
     function pointEvaluation(pointYesOrNo) {
         if (pointYesOrNo === true) {
             setRound(round + 1);
             resetTheCountdown(false);
             setGetsPoint(pointYesOrNo);
+            transferPointYesOrNo(pointYesOrNo);
         }
         // console.log("getsPoint: " + getsPoint);
     }
@@ -60,6 +65,7 @@ function Game() {
     }
 
     function determineRound(countdownNumber) {
+        console.log("%c DETERMINE ROUND", "color: #ff0000");
         var jumpToEnd = 0;
 
         if (resetCountdown === true && countdownNumber === 0) {
@@ -90,7 +96,8 @@ function Game() {
         return (
             <div>
                 <h3>You'll have to draw the requested thing!</h3>
-                <h4>For each correct answer you'll get a point. {gameSettings.maxRounds} rounds it will take! {gameSettings.pointsToWin} points to win! But beware of the countdown!</h4>
+                <h4>For each correct answer you'll get a point. {gameSettings.maxRounds} rounds
+                it will take! {gameSettings.pointsToWin} points to win! But beware of the countdown!</h4>
                 <button type="submit" onClick={() => setGameOn(true)}>Start Game</button>
                 <div>
                     <Canvas ref={ref} />
@@ -104,13 +111,15 @@ function Game() {
         return (
             <div>
                 <GameInfoText currentLabel={currentLabel} getsPoint={getsPoint} />
-                <Countdown updateCountdNumber={updateCountdownNumber} resetCountdown={setResetCountdown} getsPoint={getsPoint} />
+                <Countdown updateCountdNumber={updateCountdownNumber} resetCountdown={transferPointYesOrNo}
+                    getsPoint={getsPoint} pointEvaluation={pointEvaluation} />
                 <Round countdownNumber={round} />
                 <button type="submit" onClick={RouteToGame}>Reset Game</button>
                 <div>
                     <Canvas ref={ref} />
                     <Controls theCanvas={ref} />
-                    <Prediction theCanvas={ref} model={model} labels={labels} pointEvaluation={pointEvaluation} currentLabel={currentLabel} round={round} />
+                    <Prediction theCanvas={ref} model={model} labels={labels}
+                        pointEvaluation={pointEvaluation} currentLabel={currentLabel} round={round} />
                 </div>
             </div>
         )

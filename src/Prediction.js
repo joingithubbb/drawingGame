@@ -19,9 +19,6 @@ function Prediction({ theCanvas, model, labels, pointEvaluation, currentLabel, r
         // console.log("It matches!");
         pointEvaluation(true);
       }
-      else{
-        pointEvaluation(false);
-      }
 
     }, 1000);
     return () => clearInterval(interval);
