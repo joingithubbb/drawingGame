@@ -1,4 +1,4 @@
-import { useState, useReducer } from "react";
+import { useState, useReducer, useContext } from "react";
 import { Canvas } from "./Canvas";
 import { Controls } from "./Controls";
 import { Prediction } from "./Prediction";
@@ -13,8 +13,6 @@ import "./index.css";
 import * as tf from "@tensorflow/tfjs";
 import * as gameSettings from "./gameSettings.json";
 
-//        const points = useContext(PointsContext);
-
 function Game() {
     const model = tf.loadModel("./model/model.json");
     const labels = require("./labels.json");
@@ -24,6 +22,9 @@ function Game() {
     const [determineRoundStopper, setDetermineRoundStopper] = useState(false);
     const [resetCountdown, setResetCountdown] = useState(false);
     const [getsPoint, setGetsPoint] = useState(false);
+    const { points, pointsCallback } = useContext(PointsContext);
+
+    // const { gameRound, label, roundWin, score } = useContext(GameContext);
 
     const [gameOn, setGameOn] = useState(false);
     var currentLabel;
@@ -56,9 +57,32 @@ function Game() {
             resetTheCountdown(false);
             setGetsPoint(pointYesOrNo);
             transferPointYesOrNo(pointYesOrNo);
+            // setAssignPoints({getsPoint: "increment"});
+        }
+        else{
+            // setAssignPoints({getsPoint: "decrement"});
         }
         // console.log("getsPoint: " + getsPoint);
     }
+
+    function pointsReducer(action) {
+        switch (action.getsPoint) {
+            case "increment":
+                pointsCallback(1);
+                break;
+            case "decrement":
+                pointsCallback(-1);
+                break;
+            default:
+                console.log("getsPoint: " + action.getsPoint);
+                alert("Dafuq is goin on");
+                pointsCallback(0);
+        }
+    }
+
+    const initialState = {getsPoint: "keinePunkte"};
+
+    const [assignPoints, setAssignPoints] = useReducer(pointsReducer, initialState );
 
     function resetGetsPoint() {
         setGetsPoint(false);

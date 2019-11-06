@@ -9,7 +9,7 @@ import * as gameSettings from "./gameSettings.json";
         return (
             <div>
                 <h2>Yes you won!</h2> 
-                <h3>Score: {points}</h3>
+                <h3>Score: {points.points}</h3>
             </div>
         );
     }
@@ -20,7 +20,7 @@ import * as gameSettings from "./gameSettings.json";
         return (
             <div>
                 <h2>Oh no, you lost!</h2>
-                <h3>Score: {points}</h3>
+                <h3>Score: {points.points}</h3>
             </div>
         );
     }
@@ -30,7 +30,7 @@ import * as gameSettings from "./gameSettings.json";
 
         const points = useContext(PointsContext);
 
-        if(points >= gameSettings.pointsToWin){
+        if(points.points >= gameSettings.pointsToWin){
             return(
                 <div>
                     <Win />

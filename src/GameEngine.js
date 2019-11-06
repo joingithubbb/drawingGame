@@ -5,18 +5,39 @@ import { Game } from "./Game";
 import { Home } from "./Home";
 import { End } from "./End";
 
-const PointsContext = React.createContext(0);
+const PointsContext = React.createContext();
 
 function GameEngine() {
 
-  const points = 5;
+  var points = 0;
 
-  return(
-    <PointsProvider value={points}>
+  function pointsCallback(pointYesOrNo) {
+    points += pointYesOrNo;
+  }
+
+  return (
+    <PointsContext.Provider value={{
+      points: points,
+      pointsCallback: pointsCallback
+    }}>
       <AppRouter />
-    </PointsProvider>
+    </PointsContext.Provider>
   );
 }
+
+/* return (
+  <GameContext.Provider
+      value=
+      {{
+          "gameRound": gameRound,
+          "label": labels[gameRound - 1],
+          "roundWin": roundWin,
+          "score": { score }
+      }}>
+      <DisplayText />
+      {gameRender()}
+  </GameContext.Provider>
+) */
 
 //-----Router-Stuff---------
 
@@ -38,7 +59,7 @@ function HomeRouter() {
 }
 
 function GameRouter() {
-  return(
+  return (
     <div>
       <Game />
     </div>
@@ -46,14 +67,14 @@ function GameRouter() {
 }
 
 function EndRouter() {
-  
+
   // function routeToHome() {
 
   //   window.location.replace('./');
   // };
 
   return (
-      <End />
+    <End />
   );
 }
 

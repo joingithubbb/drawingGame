@@ -1,6 +1,9 @@
-import React from "react";
+import React, {useContext} from "react";
+import { PointsContext } from "./GameEngine";
 
 function GameInfoText(props) {
+
+    const points = useContext(PointsContext);
 
     if (props.currentLabel === "loading") {
         return (
@@ -13,6 +16,7 @@ function GameInfoText(props) {
             <div>
                 <h1>{props.getsPoint}</h1>
                 <h1>Oh man you can do better!</h1>
+                <h1>Points: {points.points}</h1>
                 <h1>Draw a {props.currentLabel}!</h1>
             </div >
         );
@@ -22,6 +26,7 @@ function GameInfoText(props) {
         return (
             <div>
                 <h1>Nice job!</h1>
+                <h1>Points: {points.points}</h1>
                 <h1>Draw a {props.currentLabel}!</h1>
             </div>
         );
