@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import { Switch } from "react-router";
 import { Game } from "./Game";
@@ -9,10 +9,13 @@ const PointsContext = React.createContext();
 
 function GameEngine() {
 
-  var points = 0;
+  // var points = 0;
+  var [points, setPoints] = useState(0);
 
-  function pointsCallback(pointYesOrNo) {
-    points += pointYesOrNo;
+  function pointsCallback(scoreOfTheRound) {
+    setPoints(points += scoreOfTheRound);
+    console.log("pointsCallback: scoreOfTheRound: " + scoreOfTheRound);
+    console.log("Score: " + points);
   }
 
   return (

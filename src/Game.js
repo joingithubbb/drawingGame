@@ -47,49 +47,55 @@ function Game() {
         currentLabel = labels[round - 1];
     }
 
-    function transferPointYesOrNo(pointYesOrNo) {
-        return pointYesOrNo;
+    function transferPointYesOrNo(scoreOfTheRound) {
+        // state drausmachen
+        return scoreOfTheRound;
     }
 
-    function pointEvaluation(pointYesOrNo) {
-        if (pointYesOrNo === true) {
+    function pointEvaluation(scoreOfTheRound) {
+        if (scoreOfTheRound === true) {
             setRound(round + 1);
             resetTheCountdown(false);
-            setGetsPoint(pointYesOrNo);
-            transferPointYesOrNo(pointYesOrNo);
-            // setAssignPoints({getsPoint: "increment"});
+            setGetsPoint(scoreOfTheRound);
+            transferPointYesOrNo(scoreOfTheRound);
+            setAssignPoints({ getsPoint: "increment" });
         }
-        else{
-            // setAssignPoints({getsPoint: "decrement"});
+        else {
+            setAssignPoints({ getsPoint: "decrement" });
+            setGetsPoint(scoreOfTheRound);
         }
         // console.log("getsPoint: " + getsPoint);
     }
 
-    function pointsReducer(action) {
+    function pointsReducer(assignPoints, action) {
         switch (action.getsPoint) {
             case "increment":
+                console.log("Increment");
                 pointsCallback(1);
+                console.log("-----------");
                 break;
             case "decrement":
+                console.log("Decrement");
                 pointsCallback(-1);
+                console.log("-----------");
                 break;
             default:
                 console.log("getsPoint: " + action.getsPoint);
-                alert("Dafuq is goin on");
+                alert("Greetings from Switch Default");
                 pointsCallback(0);
         }
     }
 
-    const initialState = {getsPoint: "keinePunkte"};
+    const initialState = { getsPoint: 0 };
 
-    const [assignPoints, setAssignPoints] = useReducer(pointsReducer, initialState );
+    const [assignPoints, setAssignPoints] = useReducer(pointsReducer, initialState);
 
     function resetGetsPoint() {
         setGetsPoint(false);
     }
 
     function determineRound(countdownNumber) {
-        console.log("%c DETERMINE ROUND", "color: #ff0000");
+        // console.log("%c DETERMINE ROUND", "color: #ff0000");
         var jumpToEnd = 0;
 
         if (resetCountdown === true && countdownNumber === 0) {
@@ -135,7 +141,7 @@ function Game() {
         return (
             <div>
                 <GameInfoText currentLabel={currentLabel} getsPoint={getsPoint} />
-                <Countdown updateCountdNumber={updateCountdownNumber} resetCountdown={transferPointYesOrNo}
+                <Countdown updateCountdNumber={updateCountdownNumber} resetCountdown={ transferPointYesOrNo }
                     getsPoint={getsPoint} pointEvaluation={pointEvaluation} />
                 <Round countdownNumber={round} />
                 <button type="submit" onClick={RouteToGame}>Reset Game</button>
@@ -143,7 +149,7 @@ function Game() {
                     <Canvas ref={ref} />
                     <Controls theCanvas={ref} />
                     <Prediction theCanvas={ref} model={model} labels={labels}
-                        pointEvaluation={pointEvaluation} currentLabel={currentLabel} round={round} />
+                        pointEvaluation={pointEvaluation} currentLabel={currentLabel} round={round} transferPointYesOrNo={transferPointYesOrNo} />
                 </div>
             </div>
         )
