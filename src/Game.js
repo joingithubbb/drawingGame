@@ -23,6 +23,7 @@ function Game() {
     const [resetCountdown, setResetCountdown] = useState(false);
     const [getsPoint, setGetsPoint] = useState(false);
     const { points, pointsCallback } = useContext(PointsContext);
+    const [assignPointYesOrNoBool, setAssignPointYesOrNoBool] = useState(false);
 
     // const { gameRound, label, roundWin, score } = useContext(GameContext);
 
@@ -47,9 +48,13 @@ function Game() {
         currentLabel = labels[round - 1];
     }
 
-    function transferPointYesOrNo(scoreOfTheRound) {
-        // state drausmachen
+    function assignPointYesOrNo(scoreOfTheRound) {
+        setAssignPointYesOrNoBool(scoreOfTheRound);
         return scoreOfTheRound;
+    }
+
+    function resetAssignPointYesOrNo() {
+        setAssignPointYesOrNoBool(false);
     }
 
     function pointEvaluation(scoreOfTheRound) {
@@ -57,7 +62,7 @@ function Game() {
             setRound(round + 1);
             resetTheCountdown(false);
             setGetsPoint(scoreOfTheRound);
-            transferPointYesOrNo(scoreOfTheRound);
+            assignPointYesOrNo(scoreOfTheRound);
             setAssignPoints({ getsPoint: "increment" });
         }
         else {
@@ -141,7 +146,7 @@ function Game() {
         return (
             <div>
                 <GameInfoText currentLabel={currentLabel} getsPoint={getsPoint} />
-                <Countdown updateCountdNumber={updateCountdownNumber} resetCountdown={ transferPointYesOrNo }
+                <Countdown updateCountdNumber={updateCountdownNumber} resetCountdown={assignPointYesOrNoBool}
                     getsPoint={getsPoint} pointEvaluation={pointEvaluation} />
                 <Round countdownNumber={round} />
                 <button type="submit" onClick={RouteToGame}>Reset Game</button>
@@ -149,7 +154,7 @@ function Game() {
                     <Canvas ref={ref} />
                     <Controls theCanvas={ref} />
                     <Prediction theCanvas={ref} model={model} labels={labels}
-                        pointEvaluation={pointEvaluation} currentLabel={currentLabel} round={round} transferPointYesOrNo={transferPointYesOrNo} />
+                        pointEvaluation={pointEvaluation} currentLabel={currentLabel} round={round} assignPointYesOrNo={assignPointYesOrNo} />
                 </div>
             </div>
         )

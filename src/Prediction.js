@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { getPrediction } from "./helpers.js";
 // import { URL_PROPERTIES } from "@tensorflow/tfjs-core/dist/environment_util";
 
-function Prediction({ theCanvas, model, labels, pointEvaluation, currentLabel, round, transferPointYesOrNo }) {
+function Prediction({ theCanvas, model, labels, pointEvaluation, currentLabel, round, assignPointYesOrNo }) {
   let [prediction, setPrediction] = useState(""); // Sets default label to empty string.
 
   //Predict every second
@@ -18,12 +18,12 @@ function Prediction({ theCanvas, model, labels, pointEvaluation, currentLabel, r
       if (prediction === currentLabel) {
         // console.log("It matches!");
         pointEvaluation(true);
-        transferPointYesOrNo(true);
+        assignPointYesOrNo(true);
       }
 
     }, 1000);
     return () => clearInterval(interval);
-  }, [prediction, theCanvas, model, labels, pointEvaluation, currentLabel, round, transferPointYesOrNo]);
+  }, [prediction, theCanvas, model, labels, pointEvaluation, currentLabel, round, assignPointYesOrNo]);
 
 
 
