@@ -102,6 +102,7 @@ function Game() {
     function determineRound(countdownNumber) {
         // console.log("%c DETERMINE ROUND", "color: #ff0000");
         var jumpToEnd = 0;
+        console.log("currentLabel: " + currentLabel);
 
         if (resetCountdown === true && countdownNumber === 0) {
             incrementLabel();
@@ -122,10 +123,7 @@ function Game() {
     function resetTheCountdown(bool) {
         setResetCountdown(bool);
     }
-
-    function updateCountdownNumber(countdownNumber) {
-        determineRound(countdownNumber);
-    }
+    
 
     if (!gameOn) {
         return (
@@ -146,7 +144,7 @@ function Game() {
         return (
             <div>
                 <GameInfoText currentLabel={currentLabel} getsPoint={getsPoint} />
-                <Countdown updateCountdNumber={updateCountdownNumber} resetCountdown={assignPointYesOrNoBool}
+                <Countdown updateCountdownNumber={determineRound} resetCountdown={resetAssignPointYesOrNo}
                     getsPoint={getsPoint} pointEvaluation={pointEvaluation} />
                 <Round countdownNumber={round} />
                 <button type="submit" onClick={RouteToGame}>Reset Game</button>

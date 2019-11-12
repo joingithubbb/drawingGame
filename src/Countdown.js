@@ -30,7 +30,7 @@ function Countdown(props) {
 
   return (
     //Vorschlag: Das wegnehmen und in useEffect tun probieren und lugen was passiert
-    <div callback={props.updateCountdNumber(countdownNumber)}>
+    <div callback={props.updateCountdownNumber(countdownNumber)}>
       Countdown: {countdownNumber}
     </div >
 
