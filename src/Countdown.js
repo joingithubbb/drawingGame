@@ -10,6 +10,7 @@ function Countdown(props) {
 
   useEffect(() => {
     const interval = setInterval(() => {
+      props.updateCountdownNumber(countdownNumber);
       if (countdownNumber === 0) {
         props.pointEvaluation(false);
         props.resetAssignPointYesOrNo();
@@ -31,9 +32,9 @@ function Countdown(props) {
 
   return (
     //Vorschlag: Das wegnehmen und in useEffect tun probieren und lugen was passiert
-    <div callback={props.updateCountdownNumber(countdownNumber)}>
+    <div>
       Countdown: {countdownNumber}
-    </div >
+    </div>
 
   )
 
