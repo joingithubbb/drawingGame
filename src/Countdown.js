@@ -6,13 +6,13 @@ import * as gameSettings from "./gameSettings.json";
 function Countdown(props) {
 
   var [countdownNumber, setCountdownNumber] = useState(gameSettings.roundTime);
-  console.log(props.resetCountdown);
+  // console.log(props.resetCountdown);
 
   useEffect(() => {
     const interval = setInterval(() => {
       if (countdownNumber === 0) {
         props.pointEvaluation(false);
-        props.resetCountdown(true);
+        props.resetAssignPointYesOrNo();
         setCountdownNumber(gameSettings.roundTime);
       }
       else {

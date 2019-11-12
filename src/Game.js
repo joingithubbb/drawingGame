@@ -120,10 +120,10 @@ function Game() {
         }
     }
 
-    function resetTheCountdown(bool) {
-        setResetCountdown(bool);
+    function resetTheCountdown() {
+        setResetCountdown(true);
     }
-    
+
 
     if (!gameOn) {
         return (
@@ -144,15 +144,17 @@ function Game() {
         return (
             <div>
                 <GameInfoText currentLabel={currentLabel} getsPoint={getsPoint} />
-                <Countdown updateCountdownNumber={determineRound} resetCountdown={resetAssignPointYesOrNo}
-                    getsPoint={getsPoint} pointEvaluation={pointEvaluation} />
+                <Countdown updateCountdownNumber={determineRound} resetTheCountdown={resetTheCountdown}
+                    resetAssignPointYesOrNo={resetAssignPointYesOrNo} getsPoint={getsPoint}
+                    pointEvaluation={pointEvaluation} />
                 <Round countdownNumber={round} />
                 <button type="submit" onClick={RouteToGame}>Reset Game</button>
                 <div>
                     <Canvas ref={ref} />
                     <Controls theCanvas={ref} />
                     <Prediction theCanvas={ref} model={model} labels={labels}
-                        pointEvaluation={pointEvaluation} currentLabel={currentLabel} round={round} assignPointYesOrNo={assignPointYesOrNo} />
+                        pointEvaluation={pointEvaluation} currentLabel={currentLabel} round={round}
+                        assignPointYesOrNo={assignPointYesOrNo} />
                 </div>
             </div>
         )
