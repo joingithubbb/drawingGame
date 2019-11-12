@@ -13,6 +13,7 @@ function Countdown(props) {
       if (countdownNumber === 0) {
         props.pointEvaluation(false);
         props.resetAssignPointYesOrNo();
+        props.resetTheCountdown();
         setCountdownNumber(gameSettings.roundTime);
       }
       else {

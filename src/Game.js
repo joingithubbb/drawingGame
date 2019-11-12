@@ -105,10 +105,11 @@ function Game() {
         console.log("currentLabel: " + currentLabel);
 
         if (resetCountdown === true && countdownNumber === 0) {
+            setResetCountdown(false);
             incrementLabel();
             setRound(round + 1);
             setDetermineRoundStopper(true);
-            setResetCountdown(false);
+
             resetGetsPoint();
             jumpToEnd += 1;
 
