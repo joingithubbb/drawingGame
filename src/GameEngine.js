@@ -14,8 +14,8 @@ function GameEngine() {
 
   function pointsCallback(scoreOfTheRound) {
     setPoints(points += scoreOfTheRound);
-    console.log("pointsCallback: scoreOfTheRound: " + scoreOfTheRound);
-    console.log("Score: " + points);
+    // console.log("pointsCallback: scoreOfTheRound: " + scoreOfTheRound);
+    // console.log("Score: " + points);
   }
 
   return (

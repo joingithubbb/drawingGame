@@ -7,6 +7,7 @@ function Countdown(props) {
 
   var [countdownNumber, setCountdownNumber] = useState(gameSettings.roundTime);
   // console.log(props.resetCountdown);
+  console.log(props);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -20,6 +21,7 @@ function Countdown(props) {
       else {
         if (props.resetCountdown === true) {
           setCountdownNumber(gameSettings.roundTime);
+          props.setResetCountdownToFalse();
         }
         else {
           setCountdownNumber(countdownNumber -= 1);
@@ -28,10 +30,9 @@ function Countdown(props) {
       }
     }, 1000);
     return () => clearInterval(interval);
-  }, [countdownNumber]);
+  }, [countdownNumber, props.resetCountdown, props.setResetCountdownToFalse]);
 
   return (
-    //Vorschlag: Das wegnehmen und in useEffect tun probieren und lugen was passiert
     <div>
       Countdown: {countdownNumber}
     </div>

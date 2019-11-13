@@ -75,18 +75,18 @@ function Game() {
     function pointsReducer(assignPoints, action) {
         switch (action.getsPoint) {
             case "increment":
-                console.log("Increment");
+                // console.log("Increment");
                 pointsCallback(1);
-                console.log("-----------");
+                // console.log("-----------");
                 break;
             case "decrement":
-                console.log("Decrement");
+                // console.log("Decrement");
                 pointsCallback(-1);
-                console.log("-----------");
+                // console.log("-----------");
                 break;
             default:
-                console.log("getsPoint: " + action.getsPoint);
-                alert("Greetings from Switch Default");
+                // console.log("getsPoint: " + action.getsPoint);
+                // alert("Greetings from Switch Default");
                 pointsCallback(0);
         }
     }
@@ -123,6 +123,11 @@ function Game() {
 
     function resetTheCountdown() {
         setResetCountdown(true);
+        console.log("resetCountdown: " + resetCountdown);
+    }
+
+    function setResetCountdownToFalse() {
+        setResetCountdown(false);
     }
 
 
@@ -147,7 +152,8 @@ function Game() {
                 <GameInfoText currentLabel={currentLabel} getsPoint={getsPoint} />
                 <Countdown updateCountdownNumber={determineRound} resetTheCountdown={resetTheCountdown}
                     resetAssignPointYesOrNo={resetAssignPointYesOrNo} getsPoint={getsPoint}
-                    pointEvaluation={pointEvaluation} />
+                    pointEvaluation={pointEvaluation} resetCountdown={resetCountdown}
+                    setResetCountdownToFalse={setResetCountdownToFalse} />
                 <Round countdownNumber={round} />
                 <button type="submit" onClick={RouteToGame}>Reset Game</button>
                 <div>
@@ -155,7 +161,7 @@ function Game() {
                     <Controls theCanvas={ref} />
                     <Prediction theCanvas={ref} model={model} labels={labels}
                         pointEvaluation={pointEvaluation} currentLabel={currentLabel} round={round}
-                        assignPointYesOrNo={assignPointYesOrNo} />
+                        assignPointYesOrNo={assignPointYesOrNo} resetTheCountdown={resetTheCountdown} />
                 </div>
             </div>
         )
