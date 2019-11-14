@@ -3,13 +3,13 @@ import { getPrediction } from "./helpers.js";
 // import { URL_PROPERTIES } from "@tensorflow/tfjs-core/dist/environment_util";
 
 function Prediction({ theCanvas, model, labels, pointEvaluation, currentLabel,
-  round, assignPointYesOrNo, resetTheCountdown }) {
+  round, assignPointYesOrNo, resetTheCountdown, setResetCountdownToFalse }) {
   let [prediction, setPrediction] = useState(""); // Sets default label to empty string.
 
   //Predict every second
   useEffect(() => {
     const interval = setInterval(() => {
-      console.log(prediction);
+      // console.log(prediction);
       // console.log(prediction + " sollte " + currentLabel + " sein");
       // console.log("round: " + round)
 
@@ -18,15 +18,15 @@ function Prediction({ theCanvas, model, labels, pointEvaluation, currentLabel,
 
       if (prediction === currentLabel) {
         // console.log("It matches!");
-        resetTheCountdown();
+        // resetTheCountdown();
         pointEvaluation(true);
         assignPointYesOrNo(true);
+        // setResetCountdownToFalse();
       }
 
     }, 1000);
     return () => clearInterval(interval);
-  }, [prediction, theCanvas, model, labels, pointEvaluation, currentLabel,
-    round, assignPointYesOrNo, resetTheCountdown]);
+  });
 
 
 

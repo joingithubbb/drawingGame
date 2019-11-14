@@ -26,6 +26,7 @@ function Game() {
     const [assignPointYesOrNoBool, setAssignPointYesOrNoBool] = useState(false);
 
     // const { gameRound, label, roundWin, score } = useContext(GameContext);
+    // console.log("resetCountdown Beginning in Game.js: " + resetCountdown);
 
     const [gameOn, setGameOn] = useState(false);
     var currentLabel;
@@ -60,8 +61,10 @@ function Game() {
     function pointEvaluation(scoreOfTheRound) {
         if (scoreOfTheRound === true) {
             setRound(round + 1);
-            resetTheCountdown(false);
-            setGetsPoint(scoreOfTheRound);
+            resetTheCountdown();
+            console.log("Game.js Line 65 scoreOfTheRound: " + scoreOfTheRound);
+            setGetsPoint(true);
+            console.log("Game.js Line 67 getsPoint: " + getsPoint);
             assignPointYesOrNo(scoreOfTheRound);
             setAssignPoints({ getsPoint: "increment" });
         }
@@ -102,10 +105,10 @@ function Game() {
     function determineRound(countdownNumber) {
         // console.log("%c DETERMINE ROUND", "color: #ff0000");
         var jumpToEnd = 0;
-        console.log("currentLabel: " + currentLabel);
+        // console.log("currentLabel: " + currentLabel);
 
         if (resetCountdown === true && countdownNumber === 0) {
-            setResetCountdown(false);
+            setResetCountdownToFalse();
             incrementLabel();
             setRound(round + 1);
             setDetermineRoundStopper(true);
@@ -123,11 +126,12 @@ function Game() {
 
     function resetTheCountdown() {
         setResetCountdown(true);
-        console.log("resetCountdown: " + resetCountdown);
+        // console.log("resetCountdown: " + resetCountdown);
     }
 
     function setResetCountdownToFalse() {
         setResetCountdown(false);
+        // console.log("reeesetCoundtdown in Game.js: " + resetCountdown);
     }
 
 
@@ -161,7 +165,8 @@ function Game() {
                     <Controls theCanvas={ref} />
                     <Prediction theCanvas={ref} model={model} labels={labels}
                         pointEvaluation={pointEvaluation} currentLabel={currentLabel} round={round}
-                        assignPointYesOrNo={assignPointYesOrNo} resetTheCountdown={resetTheCountdown} />
+                        assignPointYesOrNo={assignPointYesOrNo} resetTheCountdown={resetTheCountdown}
+                        setResetCountdownToFalse={setResetCountdownToFalse} />
                 </div>
             </div>
         )

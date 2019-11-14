@@ -7,7 +7,7 @@ function Countdown(props) {
 
   var [countdownNumber, setCountdownNumber] = useState(gameSettings.roundTime);
   // console.log(props.resetCountdown);
-  console.log(props);
+  // console.log(props);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -21,7 +21,9 @@ function Countdown(props) {
       else {
         if (props.resetCountdown === true) {
           setCountdownNumber(gameSettings.roundTime);
+          // console.log("reeesetCoundtdown before: " + props.resetCountdown);
           props.setResetCountdownToFalse();
+          // console.log("reeesetCoundtdown in Countdown: " + props.resetCountdown);
         }
         else {
           setCountdownNumber(countdownNumber -= 1);
@@ -30,7 +32,7 @@ function Countdown(props) {
       }
     }, 1000);
     return () => clearInterval(interval);
-  }, [countdownNumber, props.resetCountdown, props.setResetCountdownToFalse]);
+  });
 
   return (
     <div>
