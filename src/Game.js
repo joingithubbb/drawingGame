@@ -23,20 +23,12 @@ function Game() {
     const [resetCountdown, setResetCountdown] = useState(false);
     const [getsPoint, setGetsPoint] = useState(false);
     const { points, pointsCallback } = useContext(PointsContext);
-    const [assignPointYesOrNoBool, setAssignPointYesOrNoBool] = useState(false);
+    // const [assignPointYesOrNoBool, setAssignPointYesOrNoBool] = useState(false);
 
-    // const { gameRound, label, roundWin, score } = useContext(GameContext);
-    // console.log("resetCountdown Beginning in Game.js: " + resetCountdown);
+    console.log("resetCountdown Beginning in Game.js: " + resetCountdown);
 
     const [gameOn, setGameOn] = useState(false);
     var currentLabel;
-
-    // if(typeof getsPoint === 'undefined'){
-    // var getsPoint = true;
-    // }
-
-    // console.log("%c BANANA", "color: #ff0000");
-    // console.log("getsPoint (Banana): " + getsPoint);
 
     if (round < 11) {
         currentLabel = labels[round - 1]
@@ -45,51 +37,90 @@ function Game() {
         currentLabel = "loading";
     }
 
+    //HEART PIECE of Game.js
+    function determineRound(countdownNumber, scoreOfTheRound) {
+        // console.log("%c DETERMINE ROUND", "color: #ff0000");
+        // var jumpToEnd = 0;
+        console.log("currentLabel: " + currentLabel);
+
+        // if (countdownNumber === 0) {
+        //     incrementLabel();
+        //     resetTheCountdown();
+        //     incrementTheRound();
+        //     pointEvaluation(scoreOfTheRound);
+
+        //     // setDetermineRoundStopper(true); //brauch ich vielleicht noch!
+
+        //     // resetGetsPoint();
+
+        //     // jumpToEnd += 1;
+
+        //     // //Small workaround for jumping to /end after finishing last round
+        //     // if (round === gameSettings.maxRounds && jumpToEnd === 1) {
+        //     //     jumpToEnd = 0;
+        //     //     window.location.replace('./end');
+        //     // }
+        // }
+    }
+
+    //WICHTIG 1
     function incrementLabel() {
         currentLabel = labels[round - 1];
     }
 
-    function assignPointYesOrNo(scoreOfTheRound) {
-        setAssignPointYesOrNoBool(scoreOfTheRound);
-        return scoreOfTheRound;
+    //WICHTIG 2
+    function resetTheCountdown() {
+        setResetCountdown(true);
+
     }
 
-    function resetAssignPointYesOrNo() {
-        setAssignPointYesOrNoBool(false);
+    //WICHTIG 3
+    function incrementTheRound() {
+        setRound(round + 1);
     }
 
+    //WICHTIG 4
     function pointEvaluation(scoreOfTheRound) {
         if (scoreOfTheRound === true) {
-            setRound(round + 1);
+            incrementLabel();
             resetTheCountdown();
-            console.log("Game.js Line 65 scoreOfTheRound: " + scoreOfTheRound);
-            setGetsPoint(true);
-            console.log("Game.js Line 67 getsPoint: " + getsPoint);
-            assignPointYesOrNo(scoreOfTheRound);
-            setAssignPoints({ getsPoint: "increment" });
+            incrementTheRound();
+            setGetsPoint(true); // For the display of the "Nice Job!"/"Oh man you can do better!"
+            // assignPointYesOrNo(true);
+            setAssignPoints({ getsPoint: "increment" }); // to add a point to the score
         }
         else {
-            setAssignPoints({ getsPoint: "decrement" });
-            setGetsPoint(scoreOfTheRound);
+            incrementLabel();
+            resetTheCountdown();
+            incrementTheRound();
+            setGetsPoint(false); // For the display of the "Nice Job!"/"Oh man you can do better!"
+            // assignPointYesOrNo(false);
+            setAssignPoints({ getsPoint: "decrement" }); // to take away a point from the score
         }
-        // console.log("getsPoint: " + getsPoint);
     }
+
+
+    // function assignPointYesOrNo(scoreOfTheRound) {
+    //     setAssignPointYesOrNoBool(scoreOfTheRound);
+    //     return scoreOfTheRound;
+    // }
+
+    // function resetAssignPointYesOrNo() {
+    //     setAssignPointYesOrNoBool(false);
+    // }
+
+
 
     function pointsReducer(assignPoints, action) {
         switch (action.getsPoint) {
             case "increment":
-                // console.log("Increment");
                 pointsCallback(1);
-                // console.log("-----------");
                 break;
             case "decrement":
-                // console.log("Decrement");
                 pointsCallback(-1);
-                // console.log("-----------");
                 break;
             default:
-                // console.log("getsPoint: " + action.getsPoint);
-                // alert("Greetings from Switch Default");
+
                 pointsCallback(0);
         }
     }
@@ -98,40 +129,14 @@ function Game() {
 
     const [assignPoints, setAssignPoints] = useReducer(pointsReducer, initialState);
 
-    function resetGetsPoint() {
-        setGetsPoint(false);
-    }
+    // function resetGetsPoint() {
+    //     setGetsPoint(false);
+    // }
 
-    function determineRound(countdownNumber) {
-        // console.log("%c DETERMINE ROUND", "color: #ff0000");
-        var jumpToEnd = 0;
-        // console.log("currentLabel: " + currentLabel);
-
-        if (resetCountdown === true && countdownNumber === 0) {
-            setResetCountdownToFalse();
-            incrementLabel();
-            setRound(round + 1);
-            setDetermineRoundStopper(true);
-
-            resetGetsPoint();
-            jumpToEnd += 1;
-
-            //Small workaround for jumping to /end after finishing last round
-            if (round === gameSettings.maxRounds && jumpToEnd === 1) {
-                jumpToEnd = 0;
-                window.location.replace('./end');
-            }
-        }
-    }
-
-    function resetTheCountdown() {
-        setResetCountdown(true);
-        // console.log("resetCountdown: " + resetCountdown);
-    }
 
     function setResetCountdownToFalse() {
         setResetCountdown(false);
-        // console.log("reeesetCoundtdown in Game.js: " + resetCountdown);
+
     }
 
 
@@ -155,17 +160,17 @@ function Game() {
             <div>
                 <GameInfoText currentLabel={currentLabel} getsPoint={getsPoint} />
                 <Countdown updateCountdownNumber={determineRound} resetTheCountdown={resetTheCountdown}
-                    resetAssignPointYesOrNo={resetAssignPointYesOrNo} getsPoint={getsPoint}
+                    /* resetAssignPointYesOrNo={resetAssignPointYesOrNo} */ getsPoint={getsPoint}
                     pointEvaluation={pointEvaluation} resetCountdown={resetCountdown}
                     setResetCountdownToFalse={setResetCountdownToFalse} />
-                <Round countdownNumber={round} />
+                <Round round={round} />
                 <button type="submit" onClick={RouteToGame}>Reset Game</button>
                 <div>
                     <Canvas ref={ref} />
                     <Controls theCanvas={ref} />
                     <Prediction theCanvas={ref} model={model} labels={labels}
                         pointEvaluation={pointEvaluation} currentLabel={currentLabel} round={round}
-                        assignPointYesOrNo={assignPointYesOrNo} resetTheCountdown={resetTheCountdown}
+                        /* assignPointYesOrNo={assignPointYesOrNo} */ resetTheCountdown={resetTheCountdown}
                         setResetCountdownToFalse={setResetCountdownToFalse} />
                 </div>
             </div>

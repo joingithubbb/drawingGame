@@ -5,7 +5,7 @@ function GameInfoText(props) {
 
     const points = useContext(PointsContext);
 
-    console.log("GameInfoText.js Line 8 props.getsPoint: " + props.getsPoint);
+    // console.log("GameInfoText.js Line 8 props.getsPoint: " + props.getsPoint);
 
     if (props.currentLabel === "loading") {
         return (
