@@ -25,16 +25,18 @@ function Game() {
     const { points, pointsCallback } = useContext(PointsContext);
     // const [assignPointYesOrNoBool, setAssignPointYesOrNoBool] = useState(false);
 
-    console.log("resetCountdown Beginning in Game.js: " + resetCountdown);
+    // console.log("resetCountdown Beginning in Game.js: " + resetCountdown);
 
     const [gameOn, setGameOn] = useState(false);
     var currentLabel;
 
-    if (round < 11) {
-        currentLabel = labels[round - 1]
+    if (round <= gameSettings.maxRounds) {
+        currentLabel = labels[round - 1];
     }
-    else {
+    else if (round > gameSettings.maxRounds) {
         currentLabel = "loading";
+        console.log("points: " + points);
+        window.location.replace('./end');
     }
 
     //HEART PIECE of Game.js
@@ -162,7 +164,7 @@ function Game() {
                 <Countdown updateCountdownNumber={determineRound} resetTheCountdown={resetTheCountdown}
                     /* resetAssignPointYesOrNo={resetAssignPointYesOrNo} */ getsPoint={getsPoint}
                     pointEvaluation={pointEvaluation} resetCountdown={resetCountdown}
-                    setResetCountdownToFalse={setResetCountdownToFalse} />
+                    setResetCountdownToFalse={setResetCountdownToFalse} round={round} />
                 <Round round={round} />
                 <button type="submit" onClick={RouteToGame}>Reset Game</button>
                 <div>
