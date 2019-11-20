@@ -39,31 +39,31 @@ function Game() {
         window.location.replace('./end');
     }
 
-    //HEART PIECE of Game.js
-    function determineRound(countdownNumber, scoreOfTheRound) {
-        // console.log("%c DETERMINE ROUND", "color: #ff0000");
-        // var jumpToEnd = 0;
-        console.log("currentLabel: " + currentLabel);
+    // //HEART PIECE of Game.js
+    // function determineRound(countdownNumber, scoreOfTheRound) {
+    //     // console.log("%c DETERMINE ROUND", "color: #ff0000");
+    //     // var jumpToEnd = 0;
+    //     console.log("currentLabel: " + currentLabel);
 
-        // if (countdownNumber === 0) {
-        //     incrementLabel();
-        //     resetTheCountdown();
-        //     incrementTheRound();
-        //     pointEvaluation(scoreOfTheRound);
+    //     // if (countdownNumber === 0) {
+    //     //     incrementLabel();
+    //     //     resetTheCountdown();
+    //     //     incrementTheRound();
+    //     //     pointEvaluation(scoreOfTheRound);
 
-        //     // setDetermineRoundStopper(true); //brauch ich vielleicht noch!
+    //     //     // setDetermineRoundStopper(true); //brauch ich vielleicht noch!
 
-        //     // resetGetsPoint();
+    //     //     // resetGetsPoint();
 
-        //     // jumpToEnd += 1;
+    //     //     // jumpToEnd += 1;
 
-        //     // //Small workaround for jumping to /end after finishing last round
-        //     // if (round === gameSettings.maxRounds && jumpToEnd === 1) {
-        //     //     jumpToEnd = 0;
-        //     //     window.location.replace('./end');
-        //     // }
-        // }
-    }
+    //     //     // //Small workaround for jumping to /end after finishing last round
+    //     //     // if (round === gameSettings.maxRounds && jumpToEnd === 1) {
+    //     //     //     jumpToEnd = 0;
+    //     //     //     window.location.replace('./end');
+    //     //     // }
+    //     // }
+    // }
 
     //WICHTIG 1
     function incrementLabel() {
@@ -129,6 +129,7 @@ function Game() {
 
     const initialState = { getsPoint: 0 };
 
+    // eslint-disable-next-line
     const [assignPoints, setAssignPoints] = useReducer(pointsReducer, initialState);
 
     // function resetGetsPoint() {
@@ -161,7 +162,7 @@ function Game() {
         return (
             <div>
                 <GameInfoText currentLabel={currentLabel} getsPoint={getsPoint} />
-                <Countdown updateCountdownNumber={determineRound} resetTheCountdown={resetTheCountdown}
+                <Countdown /* updateCountdownNumber={determineRound} */ resetTheCountdown={resetTheCountdown}
                     /* resetAssignPointYesOrNo={resetAssignPointYesOrNo} */ getsPoint={getsPoint}
                     pointEvaluation={pointEvaluation} resetCountdown={resetCountdown}
                     setResetCountdownToFalse={setResetCountdownToFalse} round={round} />
