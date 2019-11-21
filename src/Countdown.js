@@ -18,7 +18,7 @@ function Countdown(props) {
       }
       else {
         if (props.resetCountdown === true) {
-          console.log("chicken");
+          // console.log("chicken");
           setCountdownNumber(gameSettings.roundTime);
           props.setResetCountdownToFalse();
 

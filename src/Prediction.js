@@ -29,7 +29,7 @@ function Prediction({ theCanvas, model, labels, pointEvaluation, currentLabel,
         }
       }
 
-    }, 1000);
+    }, 1133);
     return () => clearInterval(interval);
   });
 
