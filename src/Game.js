@@ -21,7 +21,7 @@ function Game() {
     const [round, setRound] = useState(1);
     const [determineRoundStopper, setDetermineRoundStopper] = useState(false);
     const [resetCountdown, setResetCountdown] = useState(false);
-    const [displayPoint, setDisplayPoint] = useState(false);
+    const [displayPoint, setDisplayPoint] = useState(null);
     const { points, /* pointsCallback,  */setTransferPoints } = useContext(PointsContext);
     // const [assignPointYesOrNoBool, setAssignPointYesOrNoBool] = useState(false);
 
