@@ -21,8 +21,8 @@ function Game() {
     const [round, setRound] = useState(1);
     const [determineRoundStopper, setDetermineRoundStopper] = useState(false);
     const [resetCountdown, setResetCountdown] = useState(false);
-    const [getsPoint, setGetsPoint] = useState(false);
-    const { points, pointsCallback } = useContext(PointsContext);
+    const [displayPoint, setDisplayPoint] = useState(false);
+    const { points, /* pointsCallback,  */setTransferPoints } = useContext(PointsContext);
     // const [assignPointYesOrNoBool, setAssignPointYesOrNoBool] = useState(false);
 
     // console.log("resetCountdown Beginning in Game.js: " + resetCountdown);
@@ -40,30 +40,28 @@ function Game() {
     }
 
     //HEART PIECE of Game.js
-    function determineRound(countdownNumber, scoreOfTheRound) {
-        // console.log("%c DETERMINE ROUND", "color: #ff0000");
-        // var jumpToEnd = 0;
-        console.log("currentLabel: " + currentLabel);
+    // function determineRound(countdownNumber, scoreOfTheRound) {
+    //     // console.log("%c DETERMINE ROUND", "color: #ff0000");
+    //     // var jumpToEnd = 0;
+    //     console.log("currentLabel: " + currentLabel);
 
-        // if (countdownNumber === 0) {
-        //     incrementLabel();
-        //     resetTheCountdown();
-        //     incrementTheRound();
-        //     pointEvaluation(scoreOfTheRound);
+    //     // if (countdownNumber === 0) {
+    //     //     incrementLabel();
+    //     //     resetTheCountdown();
+    //     //     incrementTheRound();
+    //     //     pointEvaluation(scoreOfTheRound);
 
-        //     // setDetermineRoundStopper(true); //brauch ich vielleicht noch!
+    //     //     // setDetermineRoundStopper(true); //brauch ich vielleicht noch!
 
-        //     // resetGetsPoint();
+    //     //     // jumpToEnd += 1;
 
-        //     // jumpToEnd += 1;
-
-        //     // //Small workaround for jumping to /end after finishing last round
-        //     // if (round === gameSettings.maxRounds && jumpToEnd === 1) {
-        //     //     jumpToEnd = 0;
-        //     //     window.location.replace('./end');
-        //     // }
-        // }
-    }
+    //     //     // //Small workaround for jumping to /end after finishing last round
+    //     //     // if (round === gameSettings.maxRounds && jumpToEnd === 1) {
+    //     //     //     jumpToEnd = 0;
+    //     //     //     window.location.replace('./end');
+    //     //     // }
+    //     // }
+    // }
 
     //WICHTIG 1
     function incrementLabel() {
@@ -87,7 +85,7 @@ function Game() {
             incrementLabel();
             resetTheCountdown();
             incrementTheRound();
-            setGetsPoint(true); // For the display of the "Nice Job!"/"Oh man you can do better!"
+            setDisplayPoint(true); // For the display of the "Nice Job!"/"Oh man you can do better!"
             // assignPointYesOrNo(true);
             setAssignPoints({ getsPoint: "increment" }); // to add a point to the score
         }
@@ -95,7 +93,7 @@ function Game() {
             incrementLabel();
             resetTheCountdown();
             incrementTheRound();
-            setGetsPoint(false); // For the display of the "Nice Job!"/"Oh man you can do better!"
+            setDisplayPoint(false); // For the display of the "Nice Job!"/"Oh man you can do better!"
             // assignPointYesOrNo(false);
             setAssignPoints({ getsPoint: "decrement" }); // to take away a point from the score
         }
@@ -111,30 +109,28 @@ function Game() {
     //     setAssignPointYesOrNoBool(false);
     // }
 
+    const initialState = 0;
+
+    const [assignPoints, setAssignPoints] = useReducer(pointsReducer, initialState);
 
 
     function pointsReducer(assignPoints, action) {
         switch (action.getsPoint) {
             case "increment":
-                pointsCallback(1);
+                console.log("%cincrement start", "color:green");
+                // pointsCallback(1);
+                setTransferPoints({ transferredPoint: "increment" });
                 break;
             case "decrement":
-                pointsCallback(-1);
+                console.log("%cdecrement start", "color:green");
+                // pointsCallback(-1);
+                setTransferPoints({ transferredPoint: "decrement" });
                 break;
             default:
 
-                pointsCallback(0);
+            // pointsCallback(0);
         }
     }
-
-    const initialState = { getsPoint: 0 };
-
-    const [assignPoints, setAssignPoints] = useReducer(pointsReducer, initialState);
-
-    // function resetGetsPoint() {
-    //     setGetsPoint(false);
-    // }
-
 
     function setResetCountdownToFalse() {
         setResetCountdown(false);
@@ -160,9 +156,9 @@ function Game() {
     else {
         return (
             <div>
-                <GameInfoText currentLabel={currentLabel} getsPoint={getsPoint} />
-                <Countdown updateCountdownNumber={determineRound} resetTheCountdown={resetTheCountdown}
-                    /* resetAssignPointYesOrNo={resetAssignPointYesOrNo} */ getsPoint={getsPoint}
+                <GameInfoText currentLabel={currentLabel} displayPoint={displayPoint} />
+                <Countdown /* updateCountdownNumber={determineRound} */ resetTheCountdown={resetTheCountdown}
+                    /* resetAssignPointYesOrNo={resetAssignPointYesOrNo} */
                     pointEvaluation={pointEvaluation} resetCountdown={resetCountdown}
                     setResetCountdownToFalse={setResetCountdownToFalse} round={round} />
                 <Round round={round} />

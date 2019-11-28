@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useReducer } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import { Switch } from "react-router";
 import { Game } from "./Game";
@@ -10,18 +10,45 @@ const PointsContext = React.createContext();
 function GameEngine() {
 
   // var points = 0;
+  console.log("Points before: " + points);
   var [points, setPoints] = useState(0);
+  console.log("Points after: " + points);
 
-  function pointsCallback(scoreOfTheRound) {
-    setPoints(points += scoreOfTheRound);
-    // console.log("pointsCallback: scoreOfTheRound: " + scoreOfTheRound);
-    // console.log("Score: " + points);
+
+  //Hier reducer einbauen
+  // function pointsCallback(scoreOfTheRound) {
+  //   setPoints(points += scoreOfTheRound);
+  //   console.log("pointsCallback: scoreOfTheRound: " + scoreOfTheRound);
+  //   // console.log("Score: " + points);
+  // }
+
+  const initialState = 0;
+
+  const [transferPoints, setTransferPoints] = useReducer(transferPointsReducer, initialState);
+
+  function transferPointsReducer(transferPoints, action) {
+    // console.log("GameEngine.js transferPointsReducer");
+    console.log(action);
+    switch (action.transferredPoint) {
+      case "increment":
+        console.log("GameEngine.js increment");
+        setPoints(points + 1);
+        break;
+      case "decrement":
+        console.log("GameEngine.js decrement");
+        setPoints(points - 1);
+        break;
+      default:
+        console.log("GameEngine.js default");
+      // console.log("action.transferredPoint: " + action.transferredPoint);
+    }
   }
 
   return (
     <PointsContext.Provider value={{
       points: points,
-      pointsCallback: pointsCallback
+      // pointsCallback: pointsCallback,
+      setTransferPoints: setTransferPoints
     }}>
       <AppRouter />
     </PointsContext.Provider>

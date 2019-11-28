@@ -5,7 +5,7 @@ function GameInfoText(props) {
 
     const points = useContext(PointsContext);
 
-    // console.log("GameInfoText.js Line 8 props.getsPoint: " + props.getsPoint);
+    // console.log("GameInfoText.js Line 8 props.displayPoint: " + props.displayPoint);
 
     if (props.currentLabel === "loading") {
         return (
@@ -13,10 +13,10 @@ function GameInfoText(props) {
         );
     }
 
-    else if (props.getsPoint === false) {
+    else if (props.displayPoint === false) {
+        console.log("%cRerender","color:orange");
         return (
             <div>
-                <h1>{props.getsPoint}</h1>
                 <h1>Oh man you can do better!</h1>
                 <h1>Points: {points.points}</h1>
                 <h1>Draw a {props.currentLabel}!</h1>
@@ -24,7 +24,8 @@ function GameInfoText(props) {
         );
     }
 
-    else if (props.getsPoint === true) {
+    else if (props.displayPoint === true) {
+        console.log("%cRerender","color:orange");
         return (
             <div>
                 <h1>Nice job!</h1>
@@ -35,10 +36,10 @@ function GameInfoText(props) {
     }
 
     else {
-        // console.log("getsPoint: " + props.getsPoint);
+        // console.log("displayPoint: " + props.displayPoint);
         return (
             <div>
-                {/* <h1>{props.getsPoint}</h1> */}
+                {/* <h1>{props.displayPoint}</h1> */}
                 <h1>Draw a {props.currentLabel}!</h1>
             </div>
         );
