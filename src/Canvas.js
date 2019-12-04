@@ -1,9 +1,14 @@
 import React, { useEffect } from "react";
+import { getPrediction } from "./helpers.js";
+// import * as tf from "@tensorflow/tfjs";
 
 const Canvas = React.forwardRef((props, ref) => {
   let mouseDown = false;
   let lastX;
   let lastY;
+
+
+  const labels = require("./labels.json");
 
   function drawLine(canvas, x, y, lastX, lastY) {
     let context = canvas.getContext("2d");
@@ -24,7 +29,28 @@ const Canvas = React.forwardRef((props, ref) => {
   const handleMouseup = () => {
     mouseDown = false;
     [lastX, lastY] = [undefined, undefined];
+    const canvas = ref.current;
+
+    getPrediction(canvas, props.model).then(prediction => {
+      if (labels[prediction[0]] === props.currentLabel) {
+        props.pointEvaluation(true);
+      }
+    });
   };
+
+  // const handleMouseup2 = () => {
+  //   mouseDown = false;
+  //   [lastX, lastY] = [undefined, undefined];
+
+
+  //   const canvas = ref.current;
+  //   getPrediction(canvas, model).then(prediction =>{
+  //     if(labels[prediction[0]] === props.currentLabel)
+  //     {
+  //       props.pointEvaluation(true);
+  //     }
+  //   });
+  // };
 
   const handleMousemove = e => {
     const rect = e.target.getBoundingClientRect();
@@ -51,6 +77,7 @@ const Canvas = React.forwardRef((props, ref) => {
       ref={ref}
       onMouseDown={() => (mouseDown = true)}
       onMouseUp={handleMouseup}
+      /*       onMouseUp={handleMouseup2} */
       onMouseMove={e => handleMousemove(e)}
     />
   );
