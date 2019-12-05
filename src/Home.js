@@ -33,7 +33,7 @@ class PlayGameButton extends Component {
 
         return (
             // <button type="submit" onClick={HomeRouter}>Play Game</button>
-            <Link to="./Game">Play Game</Link>
+            <Link to="./game">Play Game</Link>
         );
     }
 }

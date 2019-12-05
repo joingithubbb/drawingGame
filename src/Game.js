@@ -1,7 +1,6 @@
 import React from "react";
 import "./index.css";
 import * as gameSettings from "./gameSettings.json";
-import { Link } from "react-router-dom";
 import { useState } from "react";
 import { Canvas } from "./Canvas";
 import { Controls } from "./Controls";
@@ -35,7 +34,11 @@ function Game(props) {
         currentLabel = "loading";
         // console.log("points: " + points);
         // window.location.replace('./end');
-        setRouteToEnd(true);
+        // setRouteToEnd(true);
+
+        return (
+            <End></End>
+        )
     }
 
     //HEART PIECE of Game.js
@@ -43,17 +46,13 @@ function Game(props) {
     //     // console.log("%c DETERMINE ROUND", "color: #ff0000");
     //     // var jumpToEnd = 0;
     //     console.log("currentLabel: " + currentLabel);
-
     //     // if (countdownNumber === 0) {
     //     //     incrementLabel();
     //     //     resetTheCountdown();
     //     //     incrementTheRound();
     //     //     pointEvaluation(scoreOfTheRound);
-
     //     //     // setDetermineRoundStopper(true); //brauch ich vielleicht noch!
-
     //     //     // jumpToEnd += 1;
-
     //     //     // //Small workaround for jumping to /end after finishing last round
     //     //     // if (round === gameSettings.maxRounds && jumpToEnd === 1) {
     //     //     //     jumpToEnd = 0;
@@ -158,12 +157,12 @@ function Game(props) {
             </div>
         )
     }
-
-    else if (routeToEnd) {
-        return (
-            <End></End>
-        )
-    }
+    
+    // else if (routeToEnd) {
+    //     return (
+    //         <End></End>
+    //     )
+    // }
 
     else {
         return (
