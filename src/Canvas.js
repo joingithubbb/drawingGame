@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import { getPrediction } from "./helpers.js";
-// import * as tf from "@tensorflow/tfjs";
 
 const Canvas = React.forwardRef((props, ref) => {
   let mouseDown = false;

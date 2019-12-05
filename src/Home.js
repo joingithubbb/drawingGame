@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { RouteToGame } from "./GameEngine";
+import { Link } from "react-router-dom";
 
 class Home extends Component {
     render() {
@@ -32,7 +32,8 @@ class PlayGameButton extends Component {
     render() {
 
         return (
-            <button type="submit" onClick={RouteToGame}>Play Game</button>
+            // <button type="submit" onClick={HomeRouter}>Play Game</button>
+            <Link to="./Game">Play Game</Link>
         );
     }
 }

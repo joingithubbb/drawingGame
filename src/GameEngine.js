@@ -1,10 +1,12 @@
-import React, { useState, useReducer } from "react";
+import React, { useReducer } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import { Switch } from "react-router";
 import { Game } from "./Game";
 import { Home } from "./Home";
 import { End } from "./End";
 import * as tf from "@tensorflow/tfjs";
+
+const model = tf.loadModel("./model/model.json");
 
 const PointsContext = React.createContext();
 
@@ -32,15 +34,28 @@ function GameEngine() {
 
   var [points, setPoints] = useReducer(transferPointsReducer, initialState);
 
-  console.log("props.setPoints GameEngine: " + JSON.stringify(setPoints));
+  function setThePoints(increase) {
+    if (increase === true) {
+      setPoints({ transferredPoint: "increment" });
+    }
+
+    else {
+      setPoints({ transferredPoint: "decrement" });
+    }
+
+  }
+
+  console.log("props.setThePoints GameEngine: " + JSON.stringify(setThePoints));
+  console.log("props.points GameEngine: " + JSON.stringify(points));
+
   return (
     <PointsContext.Provider value={{
       "points": points,
-      "setPoints": setPoints
+      "setThePoints": setThePoints
       // pointsCallback: pointsCallback,
       // setTransferPoints: setTransferPoints
     }}>
-      <AppRouter setPoints={setPoints} />
+      <AppRouter setThePoints={setThePoints} model={model} />
     </PointsContext.Provider>
   );
 
@@ -74,17 +89,20 @@ function GameEngine() {
 
 //-----Router-Stuff---------
 
-function RouteToHome() {
-  window.location.replace('./');
-}
+// function RouteToHome() {
+//   // window.location.replace('./'); //diese windows.location.replace ersetzen, da refresh nicht sinnvoll
+//   return (
+//     <Route path="/"></Route>
+//   );
+// }
 
-function RouteToGame() {
-  window.location.replace('./game');
-}
+// function RouteToGame() {
+  // window.location.replace('./game');
+// }
 
-function RouteToEnd() {
-  window.location.replace('./end');
-}
+// function RouteToEnd() {
+//   window.location.replace('./end');
+// }
 
 
 function HomeRouter() {
@@ -92,14 +110,12 @@ function HomeRouter() {
 }
 
 function GameRouter(props) {
-  const model = tf.loadModel("./model/model.json");
 
-  console.log("props.setPoints gamerouter: " + JSON.stringify(props.setPoints));
+  console.log("props.setThePoints gamerouter: " + JSON.stringify(props.setThePoints));
   // console.log("props gamerouter: " + props);
+
   return (
-    <div>
-      <Game setPoints={props.setPoints} model={model} />
-    </div>
+      <Game setThePoints={props.setThePoints} model={props.model} />
   );
 }
 
@@ -121,16 +137,17 @@ function NoMatch() {
 }
 
 function AppRouter(props) {
-  console.log("props.setPoints approuter: " + JSON.stringify(props.setPoints));
+  console.log("props.setThePoints approuter: " + JSON.stringify(props.setThePoints));
   return (
-    <Router setPoints={props.setPoints}>
+    <Router>
       <div>
-        <Switch setPoints={props.setPoints}>
+        <Switch>
           <Route path="/" exact component={HomeRouter} />
           {/* <Route path="/game" component={GameRouter} setPoints={props.setPoints} /> */}
           <Route
             path="/game"
-            render={(props) => (<GameRouter {...props} setPoints={{setPoints: props.setPoints}} />)}
+            render={(props) => (<GameRouter {...props} model={props.model}
+              setThePoints={props.setThePoints} />)}
           />
           <Route path="/end" component={EndRouter} />
           <Route component={NoMatch} />
@@ -140,7 +157,10 @@ function AppRouter(props) {
   );
 }
 
-export { GameEngine, RouteToHome, RouteToGame, RouteToEnd };
+export { GameEngine };
 export const PointsProvider = PointsContext.Provider;
 export const PointsConsumer = PointsContext.Consumer;
 export { PointsContext };
+export { HomeRouter };
+export { GameRouter };
+export { EndRouter };

@@ -1,7 +1,7 @@
 import React from "react";
-import { RouteToHome } from "./GameEngine";
+import { Link } from "react-router-dom";
 
-function Controls({ theCanvas, model, labels }) {
+function Controls({ theCanvas }) {
 
   return (
     <div>
@@ -14,7 +14,8 @@ function Controls({ theCanvas, model, labels }) {
       >
         Clear the canvas.
       </button>
-      <button type="submit" onClick={RouteToHome}>Home</button>
+      {/* <button type="submit" onClick={HomeRouter}>Home</button> */}
+      <Link to="./">Home</Link>
     </div>
   );
 }

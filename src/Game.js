@@ -1,17 +1,14 @@
-import { useState, useReducer, useContext } from "react";
-import { Canvas } from "./Canvas";
-import { Controls } from "./Controls";
-// import { Prediction } from "./Prediction";
-import { RouteToGame } from "./GameEngine"
-import { Countdown } from "./Countdown";
-import { Round } from "./Round";
-// import { PointsContext } from "./GameEngine";
-import { GameInfoText } from "./GameInfoText";
-
 import React from "react";
 import "./index.css";
-// import * as tf from "@tensorflow/tfjs";
 import * as gameSettings from "./gameSettings.json";
+import { Link } from "react-router-dom";
+import { useState } from "react";
+import { Canvas } from "./Canvas";
+import { Controls } from "./Controls";
+import { Countdown } from "./Countdown";
+import { Round } from "./Round";
+import { GameInfoText } from "./GameInfoText";
+import { End } from "./End";
 
 function Game(props) {
     // const model = tf.loadModel("./model/model.json");
@@ -22,6 +19,7 @@ function Game(props) {
     // const [determineRoundStopper, setDetermineRoundStopper] = useState(false);
     const [resetCountdown, setResetCountdown] = useState(false);
     const [displayPoint, setDisplayPoint] = useState(null);
+    const [routeToEnd, setRouteToEnd] = useState(false);
     // const { points, setPoints } = useContext(PointsContext);
     // const [assignPointYesOrNoBool, setAssignPointYesOrNoBool] = useState(false);
 
@@ -36,7 +34,8 @@ function Game(props) {
     else if (round > gameSettings.maxRounds) {
         currentLabel = "loading";
         // console.log("points: " + points);
-        window.location.replace('./end');
+        // window.location.replace('./end');
+        setRouteToEnd(true);
     }
 
     //HEART PIECE of Game.js
@@ -81,7 +80,7 @@ function Game(props) {
 
     //WICHTIG 4
     function pointEvaluation(scoreOfTheRound) {
-        console.log("props.setPoints game.js: " + JSON.stringify(props.setPoints));
+        console.log("props.setThePoints game.js: " + JSON.stringify(props.setThePoints));
         console.log("props game.js: " + props);
         if (scoreOfTheRound === true) {
             incrementLabel();
@@ -90,7 +89,7 @@ function Game(props) {
             setDisplayPoint(true); // For the display of the "Nice Job!"/"Oh man you can do better!"
             // assignPointYesOrNo(true);
             // setAssignPoints({ getsPoint: "increment" }); // to add a point to the score
-            props.setPoints({ transferredPoint: "increment" });
+            props.setThePoints(true);
         }
         else {
             incrementLabel();
@@ -99,7 +98,7 @@ function Game(props) {
             setDisplayPoint(false); // For the display of the "Nice Job!"/"Oh man you can do better!"
             // assignPointYesOrNo(false);
             // setAssignPoints({ getsPoint: "decrement" }); // to take away a point from the score
-            props.setPoints.setPoints({ transferredPoint: "decrement" });
+            props.setThePoints(false);
         }
     }
     // function assignPointYesOrNo(scoreOfTheRound) {
@@ -140,6 +139,10 @@ function Game(props) {
 
     }
 
+    function RouteToGame() {
+        window.location.replace('./game');
+    }
+
 
     if (!gameOn) {
         return (
@@ -156,6 +159,12 @@ function Game(props) {
         )
     }
 
+    else if (routeToEnd) {
+        return (
+            <End></End>
+        )
+    }
+
     else {
         return (
             <div>
@@ -166,9 +175,10 @@ function Game(props) {
                     setResetCountdownToFalse={setResetCountdownToFalse} round={round} />
                 <Round round={round} />
                 <button type="submit" onClick={RouteToGame}>Reset Game</button>
+                {/* <Link to="./Game">Reset Game</Link> */}
                 <div>
                     <Canvas ref={ref} pointEvaluation={pointEvaluation} currentLabel={currentLabel}
-                    model={props.model} labels={labels} />
+                        model={props.model} labels={labels} />
                     <Controls theCanvas={ref} />
                     {/*                     <Prediction theCanvas={ref} model={model} labels={labels}
                         pointEvaluation={pointEvaluation} currentLabel={currentLabel} round={round}
