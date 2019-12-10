@@ -85,19 +85,19 @@ function Game(props) {
             incrementLabel();
             resetTheCountdown();
             incrementTheRound();
-            setDisplayPoint(true); // For the display of the "Nice Job!"/"Oh man you can do better!"
-            // assignPointYesOrNo(true);
-            // setAssignPoints({ getsPoint: "increment" }); // to add a point to the score
-            props.setThePoints(true);
+            // setDisplayPoint(true); // For the display of the "Nice Job!"/"Oh man you can do better!"
+            // // assignPointYesOrNo(true);
+            // // setAssignPoints({ getsPoint: "increment" }); // to add a point to the score
+            // props.setThePoints(true);
         }
         else {
             incrementLabel();
             resetTheCountdown();
             incrementTheRound();
-            setDisplayPoint(false); // For the display of the "Nice Job!"/"Oh man you can do better!"
-            // assignPointYesOrNo(false);
-            // setAssignPoints({ getsPoint: "decrement" }); // to take away a point from the score
-            props.setThePoints(false);
+            // setDisplayPoint(false); // For the display of the "Nice Job!"/"Oh man you can do better!"
+            // // assignPointYesOrNo(false);
+            // // setAssignPoints({ getsPoint: "decrement" }); // to take away a point from the score
+            // props.setThePoints(false);
         }
     }
     // function assignPointYesOrNo(scoreOfTheRound) {

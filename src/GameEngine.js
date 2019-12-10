@@ -45,7 +45,7 @@ function GameEngine() {
 
   }
 
-  console.log("props.setThePoints GameEngine: " + JSON.stringify(setThePoints));
+  // console.log("props.setThePoints GameEngine: " + JSON.stringify(setThePoints));
   console.log("props.points GameEngine: " + JSON.stringify(points));
 
   return (
@@ -55,7 +55,7 @@ function GameEngine() {
       // pointsCallback: pointsCallback,
       // setTransferPoints: setTransferPoints
     }}>
-      <AppRouter setThePoints={setThePoints} model={model} />
+      <AppRouter setThePoints={setThePoints} />
     </PointsContext.Provider>
   );
 
@@ -111,11 +111,11 @@ function HomeRouter() {
 
 function GameRouter(props) {
 
-  console.log("props.setThePoints gamerouter: " + JSON.stringify(props.setThePoints));
+  // console.log("props.setThePoints gamerouter: " + JSON.stringify(props.setThePoints));
   // console.log("props gamerouter: " + props);
 
   return (
-      <Game setThePoints={props.setThePoints} model={props.model} />
+      <Game setThePoints={props.setThePoints} model={model} />
   );
 }
 
@@ -137,7 +137,7 @@ function NoMatch() {
 }
 
 function AppRouter(props) {
-  console.log("props.setThePoints approuter: " + JSON.stringify(props.setThePoints));
+  // console.log("props.setThePoints approuter: " + JSON.stringify(props.setThePoints));
   return (
     <Router>
       <div>
@@ -146,8 +146,7 @@ function AppRouter(props) {
           {/* <Route path="/game" component={GameRouter} setPoints={props.setPoints} /> */}
           <Route
             path="/game"
-            render={(props) => (<GameRouter {...props} model={props.model}
-              setThePoints={props.setThePoints} />)}
+            render={(props) => (<GameRouter {...props} setThePoints={props.setThePoints} />)}
           />
           <Route path="/end" component={EndRouter} />
           <Route component={NoMatch} />

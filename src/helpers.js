@@ -13,6 +13,8 @@ function preprocessCanvas(canvas) {
 }
 
 export function getPrediction(theCanvas, model) {
+  console.log("theCanvas helpers.js: " + theCanvas);
+  console.log("theCanvas.current helpers.js: " + theCanvas.current);
   const tensor = preprocessCanvas(theCanvas.current);
   return model
     .then(loadedModel => loadedModel.predict(tensor).data())

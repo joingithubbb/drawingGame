@@ -28,9 +28,13 @@ const Canvas = React.forwardRef((props, ref) => {
   const handleMouseup = () => {
     mouseDown = false;
     [lastX, lastY] = [undefined, undefined];
-    const canvas = ref.current;
+    // const canvas = ref.current;
+    // const canvas = ref;
+    // console.log("canvas canvas.js: " + canvas);
+    // console.log("props.model canvas.js: " + props.model);
 
-    getPrediction(canvas, props.model).then(prediction => {
+
+    getPrediction(ref, props.model).then(prediction => {
       if (labels[prediction[0]] === props.currentLabel) {
         props.pointEvaluation(true);
       }
