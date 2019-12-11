@@ -1,4 +1,4 @@
-import React, {useContext} from "react";
+import React, { useContext } from "react";
 import { PointsContext } from "./GameEngine";
 
 function GameInfoText(props) {
@@ -12,7 +12,7 @@ function GameInfoText(props) {
     }
 
     else if (props.displayPoint === false) {
-        console.log("%cRerender","color:orange");
+        console.log("%cRerender", "color:orange");
         console.log("points: " + points);
         return (
             <div>
@@ -24,7 +24,7 @@ function GameInfoText(props) {
     }
 
     else if (props.displayPoint === true) {
-        console.log("%cRerender","color:orange");
+        console.log("%cRerender", "color:orange");
         console.log("points: " + points);
         return (
             <div>
@@ -38,6 +38,7 @@ function GameInfoText(props) {
     else {
         return (
             <div>
+                <h1>Points: {points}</h1>
                 <h1>Draw a {props.currentLabel}!</h1>
             </div>
         );

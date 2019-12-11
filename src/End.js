@@ -34,6 +34,10 @@ function End() {
         window.location.replace('./game');
     }
 
+    function RouteToHome() {
+        window.location.replace('./');
+    }
+
     if (points.points >= gameSettings.pointsToWin) {
         return (
             <div>
@@ -53,7 +57,8 @@ function End() {
                 <Lose />
                 {/* <button type="submit" onClick={HomeRouter}>Home</button>
                     <button type="submit" onClick={GameRouter}>Play again</button> */}
-                <Link to="/">Home</Link>
+                {/* <Link to="/">Home</Link> */}
+                <button type="submit" onClick={RouteToHome}>Home</button>
                 <br />
                 {/* <Link to="./Game">Play again</Link> */}
                 <button type="submit" onClick={RouteToGame}>Play again</button>
