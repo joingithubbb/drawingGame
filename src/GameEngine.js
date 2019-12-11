@@ -146,7 +146,8 @@ function AppRouter(props) {
           {/* <Route path="/game" component={GameRouter} setPoints={props.setPoints} /> */}
           <Route
             path="/game"
-            render={(props) => (<GameRouter {...props} setThePoints={props.setThePoints} />)}
+            render={(routeProps) => (<GameRouter {...routeProps} {...props}
+              setThePoints={props.setThePoints} />)}
           />
           <Route path="/end" component={EndRouter} />
           <Route component={NoMatch} />
