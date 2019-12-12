@@ -7,10 +7,59 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: rgb(255, 224, 166);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Courier New', Courier, monospace;
+  cursor: pointer;
+  font-size: ;
+}
+
+button {
+  font-family: 'Courier New', Courier, monospace ;
+  font-weight: 900;
+  font-size: large;
+  color: rgb(228, 122, 228);
+  text-transform: uppercase;
+  background-color: rgb(247, 223, 255);
+  cursor: pointer;
+
+    /* font: bold 11px Arial; */
+    text-decoration: none;
+    /* background-color: #EEEEEE; */
+    /* color: #333333; */
+    padding: 6px 18px 6px 18px;
+    border-top: 5px solid #CCCCCC;
+    border-right: 5px solid #333333;
+    border-bottom: 5px solid #333333;
+    border-left: 5px solid #CCCCCC;
+}
+
+a {
+  font-family: 'Courier New', Courier, monospace ;
+  font-size: x-large;
+  font-weight: 900;
+  color: rgb(228, 122, 228);
+  text-transform: uppercase;
+  background-color: rgb(247, 223, 255);
+  cursor: pointer;
+  /* border-width: thin;
+  border: black; */
+
+  /* font: bold 11px Arial; */
+  text-decoration: none;
+  /* background-color: #EEEEEE; */
+  /* color: #333333; */
+  padding: 3px 9px 3px 9px;
+  border-top: 4px solid #CCCCCC;
+  border-right: 4px solid #333333;
+  border-bottom: 4px solid #333333;
+  border-left: 4px solid #CCCCCC;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+    cursor: pointer;
+}
+
+.button {
+
 }

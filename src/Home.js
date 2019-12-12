@@ -20,8 +20,8 @@ class InfoTextHome extends Component {
         return (
             <div>
                 <h2>Welcome to Sketch the Drawing Game!</h2>
-                <br></br>
                 <h3>This is a game inspired by Google's "Quick, Draw!" - You'll have to draw quickly!</h3>
+                <br></br>
             </div>
         );
     }
@@ -33,7 +33,7 @@ class PlayGameButton extends Component {
 
         return (
             // <button type="submit" onClick={HomeRouter}>Play Game</button>
-            <Link to="./game">Play Game</Link>
+            <Link to="./game">Proceed</Link>
         );
     }
 }
