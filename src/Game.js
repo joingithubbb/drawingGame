@@ -8,6 +8,8 @@ import { Countdown } from "./Countdown";
 import { Round } from "./Round";
 import { GameInfoText } from "./GameInfoText";
 import { End } from "./End";
+import { Situation } from "./Situation";
+
 
 function Game(props) {
     // const model = tf.loadModel("./model/model.json");
@@ -18,7 +20,6 @@ function Game(props) {
     // const [determineRoundStopper, setDetermineRoundStopper] = useState(false);
     const [resetCountdown, setResetCountdown] = useState(false);
     const [displayPoint, setDisplayPoint] = useState(null);
-    const [routeToEnd, setRouteToEnd] = useState(false);
     // const { points, setPoints } = useContext(PointsContext);
     // const [assignPointYesOrNoBool, setAssignPointYesOrNoBool] = useState(false);
 
@@ -173,12 +174,13 @@ function Game(props) {
                     pointEvaluation={pointEvaluation} resetCountdown={resetCountdown}
                     setResetCountdownToFalse={setResetCountdownToFalse} round={round} />
                 <Round round={round} />
-                <button type="submit" onClick={RouteToGame}>Reset Game</button>
+                <button type="submit" onClick={RouteToGame}>New Game</button>
                 {/* <Link to="./Game">Reset Game</Link> */}
                 <div>
                     <Canvas ref={ref} pointEvaluation={pointEvaluation} currentLabel={currentLabel}
                         model={props.model} labels={labels} />
                     <Controls theCanvas={ref} />
+                    <Situation />
                     {/*                     <Prediction theCanvas={ref} model={model} labels={labels}
                         pointEvaluation={pointEvaluation} currentLabel={currentLabel} round={round}
                         assignPointYesOrNo={assignPointYesOrNo} resetTheCountdown={resetTheCountdown}

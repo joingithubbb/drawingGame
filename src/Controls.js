@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { useRouteToHome } from "./End";
 
 function Controls({ theCanvas }) {
 
@@ -14,8 +14,7 @@ function Controls({ theCanvas }) {
       >
         Clear the canvas.
       </button>
-      {/* <button type="submit" onClick={HomeRouter}>Home</button> */}
-      <Link to="./">Home</Link>
+      <button type="submit" onClick={useRouteToHome}>Home</button>
     </div>
   );
 }
