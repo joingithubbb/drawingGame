@@ -147,9 +147,9 @@ function Game(props) {
     if (!gameOn) {
         return (
             <div>
-                <h3>You'll have to draw the requested thing!</h3>
-                <h4>For each correct answer you'll get a point. {gameSettings.maxRounds} rounds
-                it will take! {gameSettings.pointsToWin} points to win! But beware of the countdown!</h4>
+                <h2>You'll have to draw the requested thing!</h2>
+                <h3>For each correct answer you'll get a point. {gameSettings.maxRounds} rounds
+                it will take! {gameSettings.pointsToWin} points to win! But beware of the countdown!</h3>
                 <button type="submit" onClick={() => setGameOn(true)}>Start Game</button>
                 <div>
                     {/* <Canvas ref={ref} /> */}

@@ -7,7 +7,7 @@ function Round(props) {
     if (props.round <= gameSettings.maxRounds) {
         return (
             <div>
-                Round: {props.round}
+                <h3>Round: {props.round}</h3>
             </div>
         );
     }

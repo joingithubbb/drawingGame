@@ -33,7 +33,7 @@ function Countdown(props) {
   if (props.round <= gameSettings.maxRounds) {
     return (
       <div>
-        Countdown: {countdownNumber}
+        <h3>Countdown: {countdownNumber}</h3>
       </div>
 
     )

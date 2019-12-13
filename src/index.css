@@ -6,19 +6,23 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: rgb(255, 224, 166);
+  background-color: rgb(117, 28, 28);
   font-family: 'Courier New', Courier, monospace;
+  
   cursor: pointer;
-  font-size: ;
+}
+
+h1, h2, h3 {
+  color: rgb(0, 255, 213);
 }
 
 button {
   font-family: 'Courier New', Courier, monospace ;
   font-weight: 900;
   font-size: large;
-  color: rgb(228, 122, 228);
+  color: white;
   text-transform: uppercase;
-  background-color: rgb(247, 223, 255);
+  background-color: rgb(49, 117, 97);
   cursor: pointer;
 
     /* font: bold 11px Arial; */
@@ -26,19 +30,19 @@ button {
     /* background-color: #EEEEEE; */
     /* color: #333333; */
     padding: 6px 18px 6px 18px;
-    border-top: 5px solid #CCCCCC;
-    border-right: 5px solid #333333;
-    border-bottom: 5px solid #333333;
-    border-left: 5px solid #CCCCCC;
+    border-top: 3px solid #CCCCCC;
+    border-right: 3px solid #333333;
+    border-bottom: 3px solid #333333;
+    border-left: 3px solid #CCCCCC;
 }
 
 a {
   font-family: 'Courier New', Courier, monospace ;
   font-size: x-large;
   font-weight: 900;
-  color: rgb(228, 122, 228);
+  color: white;
   text-transform: uppercase;
-  background-color: rgb(247, 223, 255);
+  background-color: rgb(49, 117, 97);
   cursor: pointer;
   /* border-width: thin;
   border: black; */
@@ -48,10 +52,10 @@ a {
   /* background-color: #EEEEEE; */
   /* color: #333333; */
   padding: 3px 9px 3px 9px;
-  border-top: 4px solid #CCCCCC;
-  border-right: 4px solid #333333;
-  border-bottom: 4px solid #333333;
-  border-left: 4px solid #CCCCCC;
+  border-top: 3px solid #CCCCCC;
+  border-right: 3px solid #333333;
+  border-bottom: 3px solid #333333;
+  border-left: 3px solid #CCCCCC;
 }
 
 code {
