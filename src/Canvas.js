@@ -28,11 +28,6 @@ const Canvas = React.forwardRef((props, ref) => {
   const handleMouseup = () => {
     mouseDown = false;
     [lastX, lastY] = [undefined, undefined];
-    // const canvas = ref.current;
-    // const canvas = ref;
-    // console.log("canvas canvas.js: " + canvas);
-    // console.log("props.model canvas.js: " + props.model);
-
 
     getPrediction(ref, props.model).then(prediction => {
       if (labels[prediction[0]] === props.currentLabel) {
@@ -40,20 +35,6 @@ const Canvas = React.forwardRef((props, ref) => {
       }
     });
   };
-
-  // const handleMouseup2 = () => {
-  //   mouseDown = false;
-  //   [lastX, lastY] = [undefined, undefined];
-
-
-  //   const canvas = ref.current;
-  //   getPrediction(canvas, model).then(prediction =>{
-  //     if(labels[prediction[0]] === props.currentLabel)
-  //     {
-  //       props.pointEvaluation(true);
-  //     }
-  //   });
-  // };
 
   const handleMousemove = e => {
     const rect = e.target.getBoundingClientRect();
@@ -80,7 +61,6 @@ const Canvas = React.forwardRef((props, ref) => {
       ref={ref}
       onMouseDown={() => (mouseDown = true)}
       onMouseUp={handleMouseup}
-      /*       onMouseUp={handleMouseup2} */
       onMouseMove={e => handleMousemove(e)}
     />
   );

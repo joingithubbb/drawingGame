@@ -12,8 +12,6 @@ function GameInfoText(props) {
     }
 
     else if (props.displayPoint === false) {
-        console.log("%cRerender", "color:orange");
-        console.log("points: " + points);
         return (
             <div>
                 <h1>Oh man you can do better!</h1>
@@ -24,8 +22,6 @@ function GameInfoText(props) {
     }
 
     else if (props.displayPoint === true) {
-        console.log("%cRerender", "color:orange");
-        console.log("points: " + points);
         return (
             <div>
                 <h1>Nice job!</h1>

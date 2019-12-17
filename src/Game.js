@@ -12,19 +12,12 @@ import { Situation } from "./Situation";
 
 
 function Game(props) {
-    // const model = tf.loadModel("./model/model.json");
     const labels = require("./labels.json");
     let ref = React.createRef();
 
     const [round, setRound] = useState(1);
-    // const [determineRoundStopper, setDetermineRoundStopper] = useState(false);
     const [resetCountdown, setResetCountdown] = useState(false);
     const [displayPoint, setDisplayPoint] = useState(null);
-    // const { points, setPoints } = useContext(PointsContext);
-    // const [assignPointYesOrNoBool, setAssignPointYesOrNoBool] = useState(false);
-
-    // console.log("resetCountdown Beginning in Game.js: " + resetCountdown);
-
     const [gameOn, setGameOn] = useState(false);
     var currentLabel;
 
@@ -33,62 +26,31 @@ function Game(props) {
     }
     else if (round > gameSettings.maxRounds) {
         currentLabel = "loading";
-        // console.log("points: " + points);
-        // window.location.replace('./end');
-        // setRouteToEnd(true);
 
         return (
             <End></End>
         )
     }
 
-    //HEART PIECE of Game.js
-    // function determineRound(countdownNumber, scoreOfTheRound) {
-    //     // console.log("%c DETERMINE ROUND", "color: #ff0000");
-    //     // var jumpToEnd = 0;
-    //     console.log("currentLabel: " + currentLabel);
-    //     // if (countdownNumber === 0) {
-    //     //     incrementLabel();
-    //     //     resetTheCountdown();
-    //     //     incrementTheRound();
-    //     //     pointEvaluation(scoreOfTheRound);
-    //     //     // setDetermineRoundStopper(true); //brauch ich vielleicht noch!
-    //     //     // jumpToEnd += 1;
-    //     //     // //Small workaround for jumping to /end after finishing last round
-    //     //     // if (round === gameSettings.maxRounds && jumpToEnd === 1) {
-    //     //     //     jumpToEnd = 0;
-    //     //     //     window.location.replace('./end');
-    //     //     // }
-    //     // }
-    // }
-
-    //WICHTIG 1
     function incrementLabel() {
         currentLabel = labels[round - 1];
     }
 
-    //WICHTIG 2
     function resetTheCountdown() {
         setResetCountdown(true);
 
     }
 
-    //WICHTIG 3
     function incrementTheRound() {
         setRound(round + 1);
     }
 
-    //WICHTIG 4
     function pointEvaluation(scoreOfTheRound) {
-        console.log("props.setThePoints game.js: " + JSON.stringify(props.setThePoints));
-        console.log("props game.js: " + props);
         if (scoreOfTheRound === true) {
             incrementLabel();
             resetTheCountdown();
             incrementTheRound();
             setDisplayPoint(true); // For the display of the "Nice Job!"/"Oh man you can do better!"
-            // assignPointYesOrNo(true);
-            // setAssignPoints({ getsPoint: "increment" }); // to add a point to the score
             props.setThePoints(true);
         }
         else {
@@ -96,43 +58,9 @@ function Game(props) {
             resetTheCountdown();
             incrementTheRound();
             setDisplayPoint(false); // For the display of the "Nice Job!"/"Oh man you can do better!"
-            // assignPointYesOrNo(false);
-            // setAssignPoints({ getsPoint: "decrement" }); // to take away a point from the score
             props.setThePoints(false);
         }
     }
-    // function assignPointYesOrNo(scoreOfTheRound) {
-    //     setAssignPointYesOrNoBool(scoreOfTheRound);
-    //     return scoreOfTheRound;
-    // }
-
-    // function resetAssignPointYesOrNo() {
-    //     setAssignPointYesOrNoBool(false);
-    // }
-
-
-    // const initialState = 0;
-
-    // const [assignPoints, setAssignPoints] = useReducer(pointsReducer, initialState);
-
-
-    // function pointsReducer(assignPoints, action) {
-    //     switch (action.getsPoint) {
-    //         case "increment":
-    //             console.log("%cincrement start", "color:green");
-    //             // pointsCallback(1);
-    //             setPoints({ transferredPoint: "increment" });
-    //             break;
-    //         case "decrement":
-    //             console.log("%cdecrement start", "color:green");
-    //             // pointsCallback(-1);
-    //             setPoints({ transferredPoint: "decrement" });
-    //             break;
-    //         default:
-
-    //         // pointsCallback(0);
-    //     }
-    // }
 
     function setResetCountdownToFalse() {
         setResetCountdown(false);
@@ -151,40 +79,24 @@ function Game(props) {
                 <h3>For each correct answer you'll get a point. {gameSettings.maxRounds} rounds
                 it will take! {gameSettings.pointsToWin} points to win! But beware of the countdown!</h3>
                 <button type="submit" onClick={() => setGameOn(true)}>Start Game</button>
-                <div>
-                    {/* <Canvas ref={ref} /> */}
-                    {/* <Controls theCanvas={ref} /> */}
-                </div>
             </div>
         )
     }
-    
-    // else if (routeToEnd) {
-    //     return (
-    //         <End></End>
-    //     )
-    // }
 
     else {
         return (
             <div>
                 <GameInfoText currentLabel={currentLabel} displayPoint={displayPoint} />
-                <Countdown /* updateCountdownNumber={determineRound} */ resetTheCountdown={resetTheCountdown}
-                    /* resetAssignPointYesOrNo={resetAssignPointYesOrNo} */
+                <Countdown resetTheCountdown={resetTheCountdown}
                     pointEvaluation={pointEvaluation} resetCountdown={resetCountdown}
                     setResetCountdownToFalse={setResetCountdownToFalse} round={round} />
                 <Round round={round} />
                 <button type="submit" onClick={RouteToGame}>New Game</button>
-                {/* <Link to="./Game">Reset Game</Link> */}
                 <div>
                     <Canvas ref={ref} pointEvaluation={pointEvaluation} currentLabel={currentLabel}
                         model={props.model} labels={labels} />
                     <Controls theCanvas={ref} />
                     <Situation />
-                    {/*                     <Prediction theCanvas={ref} model={model} labels={labels}
-                        pointEvaluation={pointEvaluation} currentLabel={currentLabel} round={round}
-                        assignPointYesOrNo={assignPointYesOrNo} resetTheCountdown={resetTheCountdown}
-                        setResetCountdownToFalse={setResetCountdownToFalse} /> */}
                 </div>
             </div>
         )

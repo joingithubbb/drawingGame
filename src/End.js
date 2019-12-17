@@ -50,11 +50,8 @@ function End() {
         return (
             <div>
                 <Win />
-                {/* <button type="submit" onClick={HomeRouter}>Home</button>
-                    <button type="submit" onClick={GameRouter}>Play again</button> */}
                 <button type="submit" onClick={useRouteToHome}>Home</button>
                 <br />
-                {/* <Link to="./Game">Play again</Link> */}
                 <button type="submit" onClick={RouteToGame}>Play again</button>
             </div>
         );
@@ -63,12 +60,8 @@ function End() {
         return (
             <div>
                 <Lose />
-                {/* <button type="submit" onClick={HomeRouter}>Home</button>
-                    <button type="submit" onClick={GameRouter}>Play again</button> */}
-                {/* <Link to="/">Home</Link> */}
                 <button type="submit" onClick={useRouteToHome}>Home</button>
                 <br />
-                {/* <Link to="./Game">Play again</Link> */}
                 <button type="submit" onClick={RouteToGame}>Play again</button>
             </div>
         );

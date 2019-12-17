@@ -9,11 +9,8 @@ function Countdown(props) {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      // props.updateCountdownNumber(countdownNumber);
       if (countdownNumber === 0) {
         props.pointEvaluation(false);
-        // props.resetAssignPointYesOrNo();
-        // props.resetTheCountdown();
         setCountdownNumber(gameSettings.roundTime);
       }
       else {
