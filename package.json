@@ -1,7 +1,7 @@
 {
   "name": "doodle",
   "version": "0.1.0",
-  "homepage": "http://epfl-exts.github.io/react-course-project-12345",
+  "homepage": "http://joingithubbb.github.io/drawingGame",
   "private": true,
   "dependencies": {
     "@tensorflow/tfjs": "^0.14.2",
