@@ -78,7 +78,7 @@ function Game(props) {
                 <h2>You'll have to draw the requested thing!</h2>
                 <h3>For each correct answer you'll get a point. {gameSettings.maxRounds} rounds
                 it will take! {gameSettings.pointsToWin} points to win! But beware of the countdown!</h3>
-                <button type="submit" onClick={() => setGameOn(true)}>Start Game</button>
+                <button id="startGameButton" type="submit" onClick={() => setGameOn(true)}>Start Game</button>
             </div>
         )
     }
