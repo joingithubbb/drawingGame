@@ -1,7 +1,7 @@
 {
   "name": "doodle",
   "version": "0.1.0",
-  "homepage": "http://epfl-exts.github.io/react-course-project",
+  "homepage": "http://epfl-exts.github.io/react-course-project-12345",
   "private": true,
   "dependencies": {
     "@tensorflow/tfjs": "^0.14.2",
@@ -33,6 +33,6 @@
   "devDependencies": {
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.15.1",
-    "gh-pages": "^2.0.1"
+    "gh-pages": "^2.1.1"
   }
 }
