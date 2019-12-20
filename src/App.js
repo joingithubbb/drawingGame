@@ -9,6 +9,4 @@ function App() {
   );
 }
 
-
-
 export { App };

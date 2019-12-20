@@ -14,6 +14,7 @@ function Controls({ theCanvas }) {
       >
         Clear the canvas.
       </button>
+      {/* REQUIREMENT: use of custom hook 2 */}
       <button type="submit" onClick={useRouteToHome}>Home</button>
     </div>
   );

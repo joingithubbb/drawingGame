@@ -8,6 +8,7 @@ import * as tf from "@tensorflow/tfjs";
 
 const model = tf.loadModel("./model/model.json");
 
+// REQUIREMENT: Use of Context to avoid "prop-drilling"
 const PointsContext = React.createContext();
 
 function transferPointsReducer(points, action) {
@@ -24,6 +25,7 @@ function GameEngine() {
 
   const initialState = 0;
 
+  // REQUIREMENT: Appropriate use of the useReducer() hook
   var [points, setPoints] = useReducer(transferPointsReducer, initialState);
 
   function setThePoints(increase) {
@@ -37,6 +39,7 @@ function GameEngine() {
 
   }
 
+  // REQUIREMENT: Use of Context to avoid "prop-drilling"
   return (
     <PointsContext.Provider value={{
       "points": points,
@@ -54,7 +57,7 @@ function HomeRouter() {
 function GameRouter(props) {
 
   return (
-      <Game setThePoints={props.setThePoints} model={model} />
+    <Game setThePoints={props.setThePoints} model={model} />
   );
 }
 

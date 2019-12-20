@@ -25,13 +25,14 @@ const Canvas = React.forwardRef((props, ref) => {
     return [x, y];
   }
 
+  // on Mouseup a prediction will be made and a point will be given
   const handleMouseup = () => {
     mouseDown = false;
     [lastX, lastY] = [undefined, undefined];
 
     getPrediction(ref, props.model).then(prediction => {
       if (labels[prediction[0]] === props.currentLabel) {
-        props.pointEvaluation(true);
+        props.pointEvaluation(true); // a point is given to the player, because the prediction matches the wanted label
       }
     });
   };

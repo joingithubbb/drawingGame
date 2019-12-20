@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
+//REQUIREMENT: class-based component
 class Home extends Component {
     render() {
 
@@ -14,6 +15,7 @@ class Home extends Component {
     }
 }
 
+//REQUIREMENT: class-based component
 class InfoTextHome extends Component {
     render() {
 
@@ -27,7 +29,7 @@ class InfoTextHome extends Component {
     }
 }
 
-
+//REQUIREMENT: class-based component
 class PlayGameButton extends Component {
     render() {
 

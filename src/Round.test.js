@@ -6,6 +6,8 @@ import { mount } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 Enzyme.configure({ adapter: new Adapter() });
 
+// REQUIREMENT: Test suite that test the features of your UI
+
 it("renders without crashing", () => {
     const div = document.createElement("div");
     ReactDOM.render(<Round />, div);

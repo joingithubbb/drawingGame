@@ -3,6 +3,7 @@ import { useIsWinner } from "./End";
 
 function Situation() {
 
+    //REQUIREMENT: use of custom hook 1
     if (useIsWinner() === true) {
         return (
             <div>

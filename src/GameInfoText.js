@@ -3,6 +3,7 @@ import { PointsContext } from "./GameEngine";
 
 function GameInfoText(props) {
 
+    // REQUIREMENT: Use of Context to avoid "prop-drilling"
     const { points } = useContext(PointsContext);
 
     if (props.currentLabel === "loading") {

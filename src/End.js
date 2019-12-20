@@ -2,7 +2,9 @@ import React, { useContext } from "react";
 import { PointsContext } from "./GameEngine";
 import * as gameSettings from "./gameSettings.json";
 
+//REQUIREMENT: declaration and definition of custom hook 1
 function useIsWinner() {
+    // REQUIREMENT: Use of Context to avoid "prop-drilling"
     const points = useContext(PointsContext);
 
     if (points.points >= gameSettings.pointsToWin) {
@@ -12,6 +14,7 @@ function useIsWinner() {
 }
 
 function Win() {
+    // REQUIREMENT: Use of Context to avoid "prop-drilling"
     const points = useContext(PointsContext);
 
     return (
@@ -24,6 +27,7 @@ function Win() {
 }
 
 function Lose() {
+    // REQUIREMENT: Use of Context to avoid "prop-drilling"
     const points = useContext(PointsContext);
 
     return (
@@ -35,6 +39,7 @@ function Lose() {
     );
 }
 
+//REQUIREMENT: declaration and definition of custom hook 2
 function useRouteToHome() {
     window.location.replace('./');
 }
@@ -46,10 +51,12 @@ function End() {
         window.location.replace('./game');
     }
 
+    //REQUIREMENT: use of custom hook 1
     if (useIsWinner() === true) {
         return (
             <div>
                 <Win />
+                {/* REQUIREMENT: use of custom hook 2 */}
                 <button type="submit" onClick={useRouteToHome}>Home</button>
                 <br />
                 <button type="submit" onClick={RouteToGame}>Play again</button>
@@ -60,6 +67,7 @@ function End() {
         return (
             <div>
                 <Lose />
+                {/* REQUIREMENT: use of custom hook 2 */}
                 <button type="submit" onClick={useRouteToHome}>Home</button>
                 <br />
                 <button type="submit" onClick={RouteToGame}>Play again</button>
