@@ -1,7 +1,7 @@
 {
   "name": "doodle",
   "version": "0.1.0",
-  "homepage": "https://joingithubbb.github.io/project-react-c1-s8-2113",
+  "homepage": "https://joingithubbb.github.io/drawingGame",
   "private": true,
   "dependencies": {
     "@tensorflow/tfjs": "^0.14.2",
