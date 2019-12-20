@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/project-react-c1-s8-2113/precache-manifest.1aba18fcc9453925b99b4b11cc520560.js"
+  "/drawingGame/precache-manifest.c17af10f3e91eb210c94b48919301a0e.js"
 );
 
 workbox.clientsClaim();
@@ -28,7 +28,7 @@ self.__precacheManifest = [].concat(self.__precacheManifest || []);
 workbox.precaching.suppressWarnings();
 workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
 
-workbox.routing.registerNavigationRoute("/project-react-c1-s8-2113/index.html", {
+workbox.routing.registerNavigationRoute("/drawingGame/index.html", {
   
   blacklist: [/^\/_/,/\/[^\/]+\.[^\/]+$/],
 });

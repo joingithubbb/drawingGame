@@ -1,13 +1,13 @@
 {
-  "main.css": "/project-react-c1-s8-2113/static/css/main.7477cfa6.chunk.css",
-  "main.js": "/project-react-c1-s8-2113/static/js/main.06914ffe.chunk.js",
-  "main.js.map": "/project-react-c1-s8-2113/static/js/main.06914ffe.chunk.js.map",
-  "static/js/1.edf6011e.chunk.js": "/project-react-c1-s8-2113/static/js/1.edf6011e.chunk.js",
-  "static/js/1.edf6011e.chunk.js.map": "/project-react-c1-s8-2113/static/js/1.edf6011e.chunk.js.map",
-  "runtime~main.js": "/project-react-c1-s8-2113/static/js/runtime~main.e0db3a94.js",
-  "runtime~main.js.map": "/project-react-c1-s8-2113/static/js/runtime~main.e0db3a94.js.map",
-  "static/css/main.7477cfa6.chunk.css.map": "/project-react-c1-s8-2113/static/css/main.7477cfa6.chunk.css.map",
-  "index.html": "/project-react-c1-s8-2113/index.html",
-  "precache-manifest.1aba18fcc9453925b99b4b11cc520560.js": "/project-react-c1-s8-2113/precache-manifest.1aba18fcc9453925b99b4b11cc520560.js",
-  "service-worker.js": "/project-react-c1-s8-2113/service-worker.js"
+  "main.css": "/drawingGame/static/css/main.7477cfa6.chunk.css",
+  "main.js": "/drawingGame/static/js/main.32eaa209.chunk.js",
+  "main.js.map": "/drawingGame/static/js/main.32eaa209.chunk.js.map",
+  "static/js/1.edf6011e.chunk.js": "/drawingGame/static/js/1.edf6011e.chunk.js",
+  "static/js/1.edf6011e.chunk.js.map": "/drawingGame/static/js/1.edf6011e.chunk.js.map",
+  "runtime~main.js": "/drawingGame/static/js/runtime~main.23865254.js",
+  "runtime~main.js.map": "/drawingGame/static/js/runtime~main.23865254.js.map",
+  "static/css/main.7477cfa6.chunk.css.map": "/drawingGame/static/css/main.7477cfa6.chunk.css.map",
+  "index.html": "/drawingGame/index.html",
+  "precache-manifest.c17af10f3e91eb210c94b48919301a0e.js": "/drawingGame/precache-manifest.c17af10f3e91eb210c94b48919301a0e.js",
+  "service-worker.js": "/drawingGame/service-worker.js"
 }
