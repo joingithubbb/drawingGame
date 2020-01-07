@@ -70,7 +70,7 @@ function EndRouter() {
 
 function NoMatch() {
 
-  return <h1>Nothing to see here - Four Oh! Four</h1>;
+  return <Home />;
 }
 
 function AppRouter(props) {
