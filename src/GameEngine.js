@@ -69,7 +69,7 @@ function EndRouter() {
 }
 
 function NoMatch() {
-
+// redirect to Home
   return <Home />;
 }
 
